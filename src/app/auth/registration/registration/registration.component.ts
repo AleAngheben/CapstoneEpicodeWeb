@@ -13,25 +13,25 @@ export class RegistrationComponent implements OnInit {
   confirmPass$: BehaviorSubject<boolean> = new BehaviorSubject(true);
   constructor(private fb: FormBuilder, private authSrv: AuthService) {}
 
-  // confirmPasswordCorrected() {
-  //   this.confirmPass$.next(false);
+  confirmPasswordCorrected() {
+    this.confirmPass$.next(false);
 
-  //   console.log(this.confirmPass$.getValue());
-  //   if (
-  //     this.subscribeForm.controls['password'].value ===
-  //     this.subscribeForm.controls['confirmPassword'].value
-  //   ) {
-  //     this.subscribeForm.controls['confirmPassword'].setErrors(null);
-  //     this.confirmPass$.next(true);
-  //     console.log(this.confirmPass$.getValue());
-  //   } else {
-  //     this.subscribeForm.controls['confirmPassword'].setErrors({
-  //       notEqual: true,
-  //     });
-  //     this.confirmPass$.next(false);
-  //     console.log(this.confirmPass$.getValue());
-  //   }
-  // }
+    console.log(this.confirmPass$.getValue());
+    if (
+      this.subscribeForm.controls['password'].value ===
+      this.subscribeForm.controls['confirmPassword'].value
+    ) {
+      this.subscribeForm.controls['confirmPassword'].setErrors(null);
+      this.confirmPass$.next(true);
+      console.log(this.confirmPass$.getValue());
+    } else {
+      this.subscribeForm.controls['confirmPassword'].setErrors({
+        notEqual: true,
+      });
+      this.confirmPass$.next(false);
+      console.log(this.confirmPass$.getValue());
+    }
+  }
 
   ngOnInit(): void {
     this.subscribeForm = this.fb.group({
@@ -40,6 +40,7 @@ export class RegistrationComponent implements OnInit {
       surname: [null, Validators.required],
       confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
       password: [null, [Validators.required, Validators.minLength(8)]],
+      username: [null, Validators.required],
       acceptTerms: [null, Validators.required],
     });
   }
