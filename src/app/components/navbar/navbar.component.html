@@ -29,6 +29,9 @@
         <li class="nav-item" *ngIf="user">
           <a class="nav-link" href="#">Favourites</a>
         </li>
+        <li class="nav-item" *ngIf="user">
+          <a class="nav-link" [routerLink]="['/postingProduct']">Add New</a>
+        </li>
         <li *ngIf="user"><button (click)="logout()">Esci</button></li>
       </ul>
     </div>

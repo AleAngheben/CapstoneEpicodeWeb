@@ -1,0 +1,49 @@
+<form [formGroup]="productForm" (ngSubmit)="createProduct()">
+  <div class="form-group">
+    <label for="name">Nome prodotto:</label>
+    <input type="text" class="form-control" id="name" formControlName="name" />
+  </div>
+  <div class="form-group">
+    <label for="description">Descrizione:</label>
+    <textarea
+      class="form-control"
+      id="description"
+      formControlName="description"
+    ></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Prezzo:</label>
+    <input
+      type="number"
+      class="form-control"
+      id="price"
+      formControlName="price"
+    />
+  </div>
+  <div class="form-group">
+    <label for="type">Categoria:</label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      formControlName="type"
+    >
+      <option selected>Open this select menu</option>
+      <option value="VIDEOGAMES">VIDEOGAMES</option>
+      <option value="BABY">BABY</option>
+      <option value="BOOKS">BOOKS</option>
+      <option value="ELECTRONICS">ELECTRONICS</option>
+      <option value="CLOTHING">CLOTHING</option>
+      <option value="BEAUTY">BEAUTY</option>
+      <option value="SPORT">SPORT</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="productImg">Descrizione:</label>
+    <textarea
+      class="form-control"
+      id="productImg"
+      formControlName="productImg"
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
+</form>

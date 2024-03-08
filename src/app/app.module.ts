@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
+import { BackofficeComponent } from './components/backoffice/backoffice.component';
 
 const routes: Route[] = [
   {
@@ -40,6 +41,11 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'postingProduct',
+    component: BackofficeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
@@ -55,6 +61,7 @@ const routes: Route[] = [
     HomeComponent,
     ProfileComponent,
     CartComponent,
+    BackofficeComponent,
   ],
   imports: [
     BrowserModule,
