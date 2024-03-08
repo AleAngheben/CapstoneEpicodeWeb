@@ -30,7 +30,7 @@ const routes: Route[] = [
     component: RegistrationComponent,
   },
   {
-    path: 'user/:id',
+    path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard],
   },

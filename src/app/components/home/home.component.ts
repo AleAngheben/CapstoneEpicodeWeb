@@ -4,6 +4,7 @@ import { HomeService } from 'src/app/services/home.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/new-product';
+import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private HomeService: HomeService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authSrv: AuthService
   ) {
     this.page = 0;
     this.size = 10;

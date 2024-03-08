@@ -14,20 +14,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <li class="nav-item" *ngIf="user">
+          <a
+            class="nav-link active"
+            [routerLink]="['/home']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+        <li class="nav-item" *ngIf="user">
+          <a class="nav-link" [routerLink]="['/profile']">Profile</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+        <li class="nav-item" *ngIf="user">
+          <a class="nav-link" href="#">Favourites</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-        <li><button (click)="logout()">Esci</button></li>
+        <li *ngIf="user"><button (click)="logout()">Esci</button></li>
       </ul>
     </div>
+    <button class="flex-end" *ngIf="user">Cart</button>
   </div>
 </nav>

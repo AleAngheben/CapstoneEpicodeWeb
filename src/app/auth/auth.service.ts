@@ -5,11 +5,13 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError, tap, catchError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../interfaces/user';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  jwtHelper = new JwtHelperService();
+  jwt = new JwtHelperService();
   apiURL = environment.apiURL;
   private authSubj = new BehaviorSubject<null | AuthData>(null);
   user$ = this.authSubj.asObservable();
@@ -22,6 +24,8 @@ export class AuthService {
       tap((loggato) => {
         this.authSubj.next(loggato);
         this.utente = loggato;
+        console.log(loggato);
+
         localStorage.setItem('user', JSON.stringify(loggato));
         this.router.navigate(['/']);
       }),
@@ -35,7 +39,7 @@ export class AuthService {
       return;
     }
     const userData: AuthData = JSON.parse(user);
-    if (this.jwtHelper.isTokenExpired(userData.token)) {
+    if (this.jwt.isTokenExpired(userData.token)) {
       this.router.navigate(['/login']);
       return;
     }
@@ -65,6 +69,19 @@ export class AuthService {
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
+
+  getMyProfile(): Observable<User> {
+    return this.http.get<User>(`${this.apiURL}/users/myProfile`);
+  }
+
+  // getUserId(): string | null {
+  //   const userString = localStorage.getItem('user');
+  //   if (userString) {
+  //     const user: User = JSON.parse(userString);
+  //     return user.id;
+  //   }
+  //   return null;
+  // }
 
   private errors(err: any) {
     console.log(err);
