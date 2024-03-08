@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -11,7 +12,11 @@ import { BehaviorSubject } from 'rxjs';
 export class RegistrationComponent implements OnInit {
   subscribeForm!: FormGroup;
   confirmPass$: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  constructor(private fb: FormBuilder, private authSrv: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authSrv: AuthService,
+    private router: Router
+  ) {}
 
   confirmPasswordCorrected() {
     this.confirmPass$.next(false);
@@ -38,12 +43,20 @@ export class RegistrationComponent implements OnInit {
       name: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       surname: [null, Validators.required],
-      confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
-      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmPassword: [null, [Validators.required]],
+      password: [null, [Validators.required]],
       username: [null, Validators.required],
       acceptTerms: [null, Validators.required],
     });
   }
+
+  geterrorsC(name: string, error: string) {
+    return this.subscribeForm.get(name)?.errors![error];
+  }
+  getFormC(nome: string) {
+    return this.subscribeForm.get(nome);
+  }
+
   onRegister() {
     const data = {
       name: this.subscribeForm.controls['name'].value,
@@ -55,9 +68,11 @@ export class RegistrationComponent implements OnInit {
 
     try {
       this.authSrv.register(data).subscribe();
+      this.router.navigate(['/login']);
     } catch (error) {
       console.log(error);
       alert(error);
+      this.router.navigate(['/register']);
     }
   }
 }

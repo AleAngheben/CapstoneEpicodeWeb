@@ -23,8 +23,6 @@ export class AuthService {
         this.authSubj.next(loggato);
         this.utente = loggato;
         localStorage.setItem('user', JSON.stringify(loggato));
-        console.log(this.user$);
-        alert('Login effettuato');
         this.router.navigate(['/']);
       }),
       catchError(this.errors)
@@ -34,12 +32,11 @@ export class AuthService {
   restore() {
     const user = localStorage.getItem('user');
     if (!user) {
-      this.router.navigate(['/register']);
       return;
     }
     const userData: AuthData = JSON.parse(user);
-    if (this.jwtHelper.isTokenExpired(userData.accessToken)) {
-      this.router.navigate(['/register']);
+    if (this.jwtHelper.isTokenExpired(userData.token)) {
+      this.router.navigate(['/login']);
       return;
     }
     this.authSubj.next(userData);

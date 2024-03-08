@@ -17,7 +17,7 @@ import { CartComponent } from './components/cart/cart.component';
 
 const routes: Route[] = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard],
   },
@@ -31,7 +31,8 @@ const routes: Route[] = [
   },
   {
     path: 'user/:id',
-    component: LoginComponent,
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'cart',
@@ -40,7 +41,7 @@ const routes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'home',
   },
 ];
 
@@ -62,7 +63,13 @@ const routes: Route[] = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

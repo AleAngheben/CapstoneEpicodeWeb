@@ -4,10 +4,8 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthData } from './auth-data';
 import { take, switchMap } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -18,21 +16,20 @@ export class TokenInterceptor implements HttpInterceptor {
   newReq!: HttpRequest<any>;
 
   intercept(
-    request: HttpRequest<unknown>,
+    request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
+  ): Observable<HttpEvent<any>> {
     return this.authSrv.user$.pipe(
       take(1),
-      switchMap((utente) => {
-        if (!utente) {
+      switchMap((user) => {
+        if (!user) {
           return next.handle(request);
         }
         this.newReq = request.clone({
-          headers: request.headers.set(
-            'Authorization',
-            `Bearer ${utente.accessToken}`
-          ),
+          headers: request.headers.set('Authorization', `Bearer ${user.token}`),
         });
+        console.log(user);
+        console.log(user.token);
         return next.handle(this.newReq);
       })
     );

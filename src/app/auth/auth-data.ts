@@ -1,5 +1,5 @@
 export interface AuthData {
-  accessToken: string;
+  token: string;
   user: {
     name: string;
     surname: string;
