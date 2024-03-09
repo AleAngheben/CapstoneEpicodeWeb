@@ -7,3 +7,16 @@
     <a href="#" class="card-link">Another link</a>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col" *ngFor="let product of products">
+      <div class="card">
+        <div class="card-header">{{ product.name }}</div>
+        <div class="card-body">
+          <!-- Altre informazioni del prodotto -->
+          <p>{{ product.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

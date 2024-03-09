@@ -1,3 +1,5 @@
+import { Product } from './new-product';
+
 export interface User {
   id: string;
   name: string;
@@ -5,4 +7,5 @@ export interface User {
   email: string;
   username: string;
   type: string;
+  productsOnSell: Product[];
 }
