@@ -1,43 +1,71 @@
-<div
-  class="container d-flex flex-column align-items-center justify-content-center"
->
-  <div id="div-form">
-    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-      <div class="mb-3">
-        <label for="inputEmail" class="form-label">Email address</label>
-        <input
-          type="email"
-          name="email"
-          class="form-control"
-          id="inputEmail"
-          email
-          required
-          ngModel
-        />
+<div class="container mt-6">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 bg-body-tertiary p-0 py-5">
+      <div class="col-lg-8 offset-lg-2 bg-body-tertiary my-5">
+        <h3 class="text-center">Hai già un account?</h3>
+        <div id="div-form" class="py-5 px-5">
+          <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label">Email</label>
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="inputEmail"
+                email
+                required
+                ngModel
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label">Password</label>
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="inputPassword"
+                required
+                ngModel
+              />
+            </div>
+            <div class="mt-4 d-flex justify-content-center">
+              <button
+                type="submit"
+                class="btn border-0 bg-mine p-2 px-4 fw-bold"
+                style="color: white"
+                [disabled]="!loginForm.valid"
+              >
+                Accedi
+              </button>
+            </div>
+          </form>
+        </div>
+        <h5 class="ps-5 pt-2" id="second-register">
+          Non hai ancora un account? <a href="/register">Registrati !</a>
+        </h5>
       </div>
-      <div class="mb-3">
-        <label for="inputPassword" class="form-label">Password</label>
-        <input
-          type="password"
-          name="password"
-          class="form-control"
-          id="inputPassword"
-          required
-          ngModel
-        />
+    </div>
+    <div class="d-none d-lg-block col-lg-4 bg-mine">
+      <div class="my-auto">
+        <h3 class="mt-6 text-center pt-3" id="register-head">
+          Non hai ancora un account?
+        </h3>
+        <p class="my-display mt-5 fw-medium px-5">
+          SwiftCart ti aiuta a sbarazzarti degli oggetti che non utilizzi più,
+          entra a far parte della nostra community e scopri le offerte del
+          giorno!
+        </p>
+        <div class="text-center mt-5">
+          <button
+            type="submit"
+            class="btn bg-body-tertiary p-2 px-4 fw-bold my-color"
+            routerLink="/register"
+            id="register-btn"
+          >
+            Registrati! <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
       </div>
-      <div class="mt-4 d-flex justify-content-center">
-        <button
-          type="submit"
-          class="btn btn-danger"
-          [disabled]="!loginForm.valid"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+    </div>
   </div>
-  <a class="mt-2" routerLink="/register" routerLinkActive="active">
-    Registrati
-  </a>
 </div>
