@@ -23,11 +23,12 @@ export class AuthService {
     return this.http.post<AuthData>(`${this.apiURL}/auth/login`, data).pipe(
       tap((loggato) => {
         this.authSubj.next(loggato);
+
         this.utente = loggato;
         console.log(loggato);
 
         localStorage.setItem('user', JSON.stringify(loggato));
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       }),
       catchError(this.errors)
     );

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Product } from 'src/app/interfaces/new-product';
+import { Product, ProductOnSell } from 'src/app/interfaces/new-product';
 import { User } from 'src/app/interfaces/user';
+import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,11 +10,15 @@ import { User } from 'src/app/interfaces/user';
 })
 export class ProfileComponent implements OnInit {
   user: User | undefined;
-  products: Product[] | undefined = [];
-  constructor(private authSrv: AuthService) {}
+  products: ProductOnSell[] | undefined = [];
+  constructor(
+    private authSrv: AuthService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
     this.getUserProfile();
+    this.loadProductsOnSale();
   }
 
   getUserProfile(): void {
@@ -27,7 +32,16 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
+  loadProductsOnSale(): void {
+    this.productService.getMyProductsOnSale().subscribe(
+      (products: ProductOnSell[]) => {
+        this.products = products;
+      },
+      (error) => {
+        console.error('Error loading products:', error);
+      }
+    );
+  }
   // getMyProductsOnSell(): void {
   //   if (this.user) {
   //     this.products = this.user.productsOnSell;

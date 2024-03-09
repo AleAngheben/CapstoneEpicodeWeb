@@ -31,6 +31,18 @@ export interface Product {
   productImg: string;
   seller: User;
 }
+
+export interface ProductOnSell {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  type: string;
+  productImg: string;
+  serllerName: string;
+  sellerSurname: string;
+}
+
 export interface Pageable {
   pageNumber: number;
   pageSize: number;
