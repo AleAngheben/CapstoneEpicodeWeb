@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
+  passwordVisible: boolean = false;
+  passwordConfirmVisible: boolean = false;
   subscribeForm!: FormGroup;
   confirmPass$: BehaviorSubject<boolean> = new BehaviorSubject(true);
   constructor(
@@ -73,6 +75,29 @@ export class RegistrationComponent implements OnInit {
       console.log(error);
       alert(error);
       this.router.navigate(['/register']);
+    }
+  }
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+    const passwordInput = document.getElementById('inputPassword');
+    if (passwordInput) {
+      passwordInput.setAttribute(
+        'type',
+        this.passwordVisible ? 'text' : 'password'
+      );
+    }
+  }
+  togglePasswordVisibilityConfirm(): void {
+    this.passwordConfirmVisible = !this.passwordConfirmVisible;
+    const passwordConfirmInput = document.getElementById(
+      'inputConfirmPassword'
+    );
+    if (passwordConfirmInput) {
+      passwordConfirmInput.setAttribute(
+        'type',
+        this.passwordConfirmVisible ? 'text' : 'password'
+      );
     }
   }
 }
