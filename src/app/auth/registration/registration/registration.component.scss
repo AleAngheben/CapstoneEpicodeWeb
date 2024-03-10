@@ -11,3 +11,35 @@
 i {
   cursor: pointer;
 }
+
+@media screen and (min-width: 1200px) {
+  .my-display {
+    display: block;
+  }
+  #second-register {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .my-display {
+    display: none;
+  }
+  #register-btn {
+    margin-top: rem;
+  }
+  #register-head {
+    margin-top: 9rem;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  #second-register {
+    display: block;
+  }
+}
+@media screen and (min-width: 992px) {
+  #second-register {
+    display: none;
+  }
+}

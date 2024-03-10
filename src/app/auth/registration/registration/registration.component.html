@@ -129,7 +129,7 @@
     <div class="col-lg-6 bg-body-tertiary p-0 py-2">
       <div class="col-lg-8 offset-lg-2 bg-body-tertiary my-3">
         <h3 class="text-center">Registrati subito!</h3>
-        <div class="div-form">
+        <div class="div-form" class="py-1 px-5 px-lg-0">
           <form [formGroup]="subscribeForm" (ngSubmit)="onRegister()">
             <div class="mb-3">
               <label for="inputName" class="form-label">Nome </label>
@@ -260,6 +260,10 @@
             </button>
           </form>
         </div>
+        <h5 class="ps-5 pt-4" id="second-register">
+          Hai già un accoun?
+          <a href="/login" class="text-decoration-none">Accedi !</a>
+        </h5>
       </div>
     </div>
   </div>
