@@ -9,6 +9,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  passwordVisible: boolean = false;
+
   constructor(private authSrv: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -26,6 +28,17 @@ export class LoginComponent implements OnInit {
       alert('Login errato');
       console.log(error);
       this.router.navigate(['/login']);
+    }
+  }
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+    const passwordInput = document.getElementById('inputPassword');
+    if (passwordInput) {
+      passwordInput.setAttribute(
+        'type',
+        this.passwordVisible ? 'text' : 'password'
+      );
     }
   }
 }

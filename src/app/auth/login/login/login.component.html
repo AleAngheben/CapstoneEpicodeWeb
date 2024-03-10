@@ -17,7 +17,7 @@
                 ngModel
               />
             </div>
-            <div class="mb-3">
+            <div class="mb-3 position-relative">
               <label for="inputPassword" class="form-label">Password</label>
               <input
                 type="password"
@@ -27,6 +27,21 @@
                 required
                 ngModel
               />
+              <span
+                class="position-absolute end-0 top-50 pe-2 fs-5"
+                *ngIf="passwordVisible"
+              >
+                <i class="bi bi-eye" (click)="togglePasswordVisibility()"></i>
+              </span>
+              <span
+                class="position-absolute end-0 top-50 pe-2 fs-5"
+                *ngIf="!passwordVisible"
+              >
+                <i
+                  class="bi bi-eye-slash"
+                  (click)="togglePasswordVisibility()"
+                ></i>
+              </span>
             </div>
             <div class="mt-4 d-flex justify-content-center">
               <button
