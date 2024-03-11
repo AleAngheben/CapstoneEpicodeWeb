@@ -41,7 +41,15 @@
           {{ product.seller.username }}
         </p>
         <p class="card-text fs-3">{{ product.price }} €</p>
-        <a href="#" class="btn bg-mine text-white w-100">Add to Cart</a>
+
+        <button
+          (click)="addToCart(product.id)"
+          class="btn bg-mine text-white w-100"
+          id="buyable"
+          [disabled]="user?.id === product.seller.id"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   </div>

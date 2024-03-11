@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/new-product';
 import { AuthService } from 'src/app/auth/auth.service';
+import { CartService } from 'src/app/services/cart.service';
+import { User } from 'src/app/interfaces/user';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,11 +20,13 @@ export class HomeComponent implements OnInit {
   size!: number;
   totalElements!: number;
   totalPages!: number;
-
+  user: User | undefined;
+  buyable: boolean = false;
   constructor(
     private HomeService: HomeService,
     private activatedRoute: ActivatedRoute,
-    private authSrv: AuthService
+    private authSrv: AuthService,
+    private cartSrv: CartService
   ) {
     this.page = 0;
     this.size = 10;
@@ -30,6 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserProfile();
+
     this.getProducts();
   }
 
@@ -38,5 +44,34 @@ export class HomeComponent implements OnInit {
     this.HomeService.getProducts().subscribe((response: any) => {
       this.products = response.content;
     });
+  }
+  addToCart(productId: string) {
+    this.cartSrv.addItemToCart(productId).subscribe(
+      (response) => {
+        console.log('Prodotto aggiunto al carrello', response);
+      },
+      (error) => {
+        console.error('Errore :', error);
+      }
+    );
+  }
+  getUserProfile(): void {
+    this.authSrv.getMyProfile().subscribe(
+      (user: User) => {
+        this.user = user;
+        // this.getMyProductsOnSell();
+      },
+      (error) => {
+        console.error('Errore nel recupero del profilo utente:', error);
+      }
+    );
+  }
+
+  isBuyable(userId: string, sellerId: string) {
+    if (userId === sellerId) {
+      this.buyable = false;
+    } else {
+      this.buyable = true;
+    }
   }
 }

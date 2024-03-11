@@ -44,9 +44,12 @@
         </li>
       </ul>
 
-      <div>
+      <div class="ms-auto d-flex text-white gap-3">
+        <div>
+          <a [routerLink]="['/cart']"><i class="bi bi-cart fs-3"></i></a>
+        </div>
         <button class="btn btn-danger" *ngIf="user" (click)="logout()">
-          Esci <i class="bi bi-box-arrow-right"></i>
+          <i class="bi bi-box-arrow-right"></i>
         </button>
       </div>
     </div>
