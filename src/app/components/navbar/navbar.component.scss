@@ -4,15 +4,41 @@
 }
 
 .bg-mine {
-  background-color: #8ecae6;
+  background-color: #603eab;
 }
 
 #my-logo {
   width: 200px;
   border-radius: 10%;
-  color: wheat;
 }
 
 nav {
   height: 5rem;
 }
+
+/* Assicura che il testo delle scritte del menu sia nero quando il menu è aperto */
+
+@media screen and (max-width: 991px) {
+  a {
+    color: white;
+  }
+  .navbar-collapse {
+    z-index: 1001;
+    background-color: #603eab;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  a {
+    color: white;
+  }
+}
+
+.nav-link.active {
+  color: #8eccb0;
+}
+.nav-link:hover {
+  color: #8eccb0;
+}
+/* Assicura che il menu collapse sia in primo piano */

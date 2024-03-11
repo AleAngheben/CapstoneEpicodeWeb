@@ -3,12 +3,12 @@
     <div class="d-none d-lg-block col-lg-4 bg-mine">
       <div class="d-flex flex-column mt-6">
         <div>
-          <h3 class="mt-6 text-center pt-3" id="register-head">
+          <h3 class="mt-6 text-center pt-3 text-white" id="register-head">
             Hai già un account?
           </h3>
         </div>
         <div>
-          <p class="my-display mt-5 fw-medium px-5">
+          <p class="my-display mt-5 fw-medium px-5 text-white">
             Accedi subito per non perderti le ultime novità e gli ultimi
             prodotti caricati per ogni categoria!
           </p>
@@ -20,7 +20,7 @@
             routerLink="/login"
             id="register-btn"
           >
-            <i class="bi bi-arrow-left"></i> Accedi!
+            <i class="bi bi-arrow-left"></i> <span>Accedi!</span>
           </button>
         </div>
       </div>
@@ -155,13 +155,13 @@
               style="color: white"
               [disabled]="!subscribeForm.valid"
             >
-              Conferma
+              <span>Conferma</span>
             </button>
           </form>
         </div>
         <h5 class="ps-5 pt-4" id="second-register">
           Hai già un account?
-          <a href="/login" class="text-decoration-none">Accedi !</a>
+          <a href="/login" class="text-decoration-none my-color">Accedi !</a>
         </h5>
       </div>
     </div>

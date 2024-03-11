@@ -26,6 +26,7 @@ export class AuthService {
 
         this.utente = loggato;
         console.log(loggato);
+        console.log(data);
 
         localStorage.setItem('user', JSON.stringify(loggato));
         this.router.navigate(['/home']);

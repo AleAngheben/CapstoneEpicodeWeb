@@ -1,13 +1,47 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <div class="col" *ngFor="let product of products">
-      <div class="card">
-        <div class="card-header">{{ product.name }}</div>
-        <div class="card-body">
-          <!-- Altre informazioni del prodotto -->
-          <p>{{ product.description }}</p>
-          <p>{{ product.seller.name }} {{ product.seller.surname }}</p>
+    <div class="w-100 mb-5 card text-bg-dark rounded-5">
+      <img
+        src="../../../assets/imgs/SwiftCartLogo.png"
+        class="card-img"
+        alt="..."
+      />
+
+      <div class="card-img-overlay">
+        <h5 class="card-title fs-big">SCONTI ESTREMI!</h5>
+        <p class="card-text">
+          This is a wider card with supporting text below as a natural lead-in
+          to additional content. This content is a little bit longer.
+        </p>
+        <p class="card-text"><small>Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center gap-5 gap-lg-2">
+    <div
+      class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0"
+      *ngFor="let product of products"
+    >
+      <img
+        src="{{ product.productImg }}"
+        class="card-img-top product-img"
+        alt="{{ product.name }}"
+      />
+
+      <div class="card-body product-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">
+              {{ product.name }}
+            </h5>
+          </div>
+          <div>O</div>
         </div>
+        <p class="card-text">
+          {{ product.seller.username }}
+        </p>
+        <p class="card-text fs-3">{{ product.price }} €</p>
+        <a href="#" class="btn bg-mine text-white w-100">Add to Cart</a>
       </div>
     </div>
   </div>
