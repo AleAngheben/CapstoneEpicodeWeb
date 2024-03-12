@@ -48,7 +48,6 @@ export class RegistrationComponent implements OnInit {
       confirmPassword: [null, [Validators.required]],
       password: [null, [Validators.required]],
       username: [null, Validators.required],
-      acceptTerms: [null, Validators.required],
     });
   }
 

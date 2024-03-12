@@ -49,7 +49,7 @@
           <a [routerLink]="['/cart']"><i class="bi bi-cart fs-3"></i></a>
         </div>
         <button class="btn btn-danger" *ngIf="user" (click)="logout()">
-          <i class="bi bi-box-arrow-right"></i>
+          <i class="bi bi-box-arrow-right" *ngIf="user"></i>
         </button>
       </div>
     </div>

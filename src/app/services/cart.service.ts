@@ -16,11 +16,19 @@ export class CartService {
     return this.http.post(`${this.apiURL}/items/${productId}`, productId);
   }
 
-  deleteItemFromCart(productId: string): Observable<any> {
-    return this.http.delete(`${this.apiURL}/items/${productId}`);
+  deleteItemFromCart(itemId: string): Observable<any> {
+    return this.http.delete(`${this.apiURL}/items/delete/${itemId}`);
   }
 
   getMyCart(): Observable<Cart> {
     return this.http.get<Cart>(`${this.apiURL}/carts/myCart`);
+  }
+
+  itemPlusOnCart(itemId: string): Observable<any> {
+    return this.http.put(`${this.apiURL}/items/add/${itemId}`, itemId);
+  }
+
+  itemMinusOnCart(productId: string): Observable<any> {
+    return this.http.delete(`${this.apiURL}/items/minus/${productId}`);
   }
 }

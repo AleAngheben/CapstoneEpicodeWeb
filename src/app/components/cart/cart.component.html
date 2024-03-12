@@ -1,9 +1,9 @@
-<div class="container bg-body-secondary">
-  <div class="row">
+<div class="container" *ngIf="productsOnCart && productsOnCart.length > 0">
+  <div class="row gap-3 justify-content-center">
     <h1 class="text-center mb-5">
       Your Bag &lpar;{{ productsOnCart?.length }}&rpar;
     </h1>
-    <div class="col-7">
+    <div class="col-7 bg-body-tertiary">
       <h2>Products</h2>
       <div *ngFor="let item of productsOnCart" class="d-flex py-3">
         <div class="col-2">
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 offset-1 text-center">
+    <div class="col-4 text-center bg-sum">
       <h2>Summary</h2>
       <div
         *ngFor="let item of productsOnCart"
@@ -43,23 +43,29 @@
         <div>
           <h4>{{ item.products.name }}</h4>
         </div>
-        <div>
-          <h5>Quantity: {{ item.quantity }}</h5>
+
+        <div class="d-flex gap-2">
+          <a class="my-counter" (click)="decreaseItemQuantity(item.id)"
+            ><i class="bi bi-dash-circle"></i
+          ></a>
+          <div>
+            <h5>Quantity: {{ item.quantity }}</h5>
+          </div>
+          <a class="my-counter" (click)="increaseItemQuantity(item.id)">
+            <i class="bi bi-plus-circle"></i
+          ></a>
         </div>
       </div>
 
       <div>
-        <h3>TOTAL AMOUNT: {{ cart?.cartPrice }}</h3>
+        <h3>TOTAL AMOUNT: {{ cart?.cartPrice | number : "1.2-2" }}</h3>
       </div>
     </div>
   </div>
 </div>
 
-<!-- <h1>carrello di {{ user?.name }} {{ user?.surname }}</h1>
-<div >
-  <div>
-    <h3>{{ item.products.name }}</h3>
-    <h3>{{ item.products.price }}</h3>
-    <h3>{{ item.quantity }}</h3>
+<div class="container" *ngIf="!productsOnCart || productsOnCart.length === 0">
+  <div class="row justify-content-center">
+    <h1 class="text-center">Il tuo carrello è vuoto</h1>
   </div>
-</div> -->
+</div>
