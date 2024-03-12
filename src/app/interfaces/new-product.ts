@@ -39,7 +39,7 @@ export interface ProductOnSell {
   price: number;
   type: string;
   productImg: string;
-  serllerName: string;
+  sellerName: string;
   sellerSurname: string;
 }
 

@@ -5,6 +5,7 @@ export interface User {
   name: string;
   surname: string;
   email: string;
+  avatarUrl: string;
   username: string;
   type: string;
   productsOnSell: Product[];

@@ -5,8 +5,8 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { take, switchMap } from 'rxjs';
+
+import { take, switchMap, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable()

@@ -1,21 +1,51 @@
-<div class="card" style="width: 18rem">
-  <div class="card-body">
-    <h5 class="card-title">{{ user?.name }} {{ user?.surname }}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">{{ user?.email }}</h6>
-    <p class="card-text">il mio nome è {{ user?.name }}</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>
 <div class="container">
-  <div class="row">
-    <div class="col" *ngFor="let product of products">
-      <div class="card">
-        <div class="card-header">{{ product.name }}</div>
-        <div class="card-body">
-          <!-- Altre informazioni del prodotto -->
-          <p>{{ product.description }}</p>
+  <div class="border-mine d-flex justify-content-center">
+    <div class="row p-4 border-mine2 bg-white m-0">
+      <div class="col-2">
+        <div class="w-100 rounded-5 object-fit-cover">
+          <img
+            src="{{ user?.avatarUrl }}"
+            alt=""
+            class="w-100 rounded-50"
+            id="profile-img"
+          />
         </div>
+      </div>
+      <div class="col-9 offset-1">
+        <h3>{{ user?.name }} {{ user?.surname }}</h3>
+        <p>{{ user?.username }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center gap-5 gap-lg-2 mt-5">
+    <div
+      class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0"
+      *ngFor="let product of products"
+    >
+      <img
+        src="{{ product.productImg }}"
+        class="card-img-top product-img"
+        alt="{{ product.name }}"
+      />
+
+      <div class="card-body product-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">
+              {{ product.name }}
+            </h5>
+          </div>
+          <div>O</div>
+        </div>
+        <p class="card-text">
+          {{ product.sellerName }} {{ product.sellerSurname }}
+        </p>
+        <p class="card-text fs-3">{{ product.price }} €</p>
+
+        <button class="btn bg-mine2 text-white fw-bolder w-100">
+          Modifica
+        </button>
       </div>
     </div>
   </div>

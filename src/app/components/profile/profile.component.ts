@@ -18,14 +18,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
-    this.loadProductsOnSale();
   }
 
   getUserProfile(): void {
     this.authSrv.getMyProfile().subscribe(
       (user: User) => {
         this.user = user;
-        // this.getMyProductsOnSell();
+        this.loadProductsOnSale();
       },
       (error) => {
         console.error('Errore nel recupero del profilo utente:', error);
@@ -42,10 +41,4 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  // getMyProductsOnSell(): void {
-  //   if (this.user) {
-  //     this.products = this.user.productsOnSell;
-  //     console.log(this.products);
-  //   }
-  // }
 }
