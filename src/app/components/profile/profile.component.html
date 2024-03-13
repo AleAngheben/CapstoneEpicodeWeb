@@ -1,15 +1,26 @@
 <div class="container">
   <div class="border-mine d-flex justify-content-center">
     <div class="row p-4 border-mine2 bg-white m-0">
-      <div class="col-2">
+      <div class="col-2" *ngIf="user && user.avatarUrl">
         <div class="w-100 rounded-5 object-fit-cover">
           <img
-            src="{{ user?.avatarUrl }}"
+            *ngIf="imageSwitch; else loadingTemplate"
+            src="{{ user.avatarUrl }}"
             alt=""
             class="w-100 rounded-50"
             id="profile-img"
           />
+          <ng-template #loadingTemplate>CALMO</ng-template>
         </div>
+        <button class="btn btn-primary mt-2" (click)="onClickUploadButton()">
+          Carica Avatar
+        </button>
+        <input
+          type="file"
+          id="avatarInput"
+          style="display: none"
+          (change)="onFileSelected($event)"
+        />
       </div>
       <div class="col-9 offset-1">
         <h3>{{ user?.name }} {{ user?.surname }}</h3>

@@ -10,3 +10,7 @@ export interface User {
   type: string;
   productsOnSell: Product[];
 }
+
+export interface UserAvatar {
+  avatarUrl: string;
+}
