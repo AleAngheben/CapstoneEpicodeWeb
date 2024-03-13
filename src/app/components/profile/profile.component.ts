@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit, OnChanges {
   file: File = new File([''], '');
   imageSwitch: boolean = true;
   avatar!: string;
+
   constructor(
     private authSrv: AuthService,
     private productService: ProductService

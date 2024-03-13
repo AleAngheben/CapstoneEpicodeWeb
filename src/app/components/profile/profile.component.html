@@ -1,20 +1,34 @@
 <div class="container">
   <div class="border-mine d-flex justify-content-center">
     <div class="row p-4 border-mine2 bg-white m-0">
-      <div class="col-2" *ngIf="user && user.avatarUrl">
-        <div class="w-100 rounded-5 object-fit-cover">
-          <img
-            *ngIf="imageSwitch; else loadingTemplate"
-            src="{{ user.avatarUrl }}"
-            alt=""
-            class="w-100 rounded-50"
-            id="profile-img"
-          />
-          <ng-template #loadingTemplate>CALMO</ng-template>
+      <div
+        class="col-2"
+        *ngIf="user && user.avatarUrl"
+        id="profile-img-container"
+      >
+        <div class="d-flex flex-column align-items-center">
+          <div class="w-100 rounded-5 object-fit-cover position-relative">
+            <!-- <i
+              class="bi bi-pencil-square position-absolute fs-5 end-0"
+              (click)="onClickUploadButton()"
+            ></i> -->
+            <img
+              *ngIf="imageSwitch; else loadingTemplate"
+              src="{{ user.avatarUrl }}"
+              alt=""
+              class="w-100 rounded-50"
+              id="profile-img"
+              (click)="onClickUploadButton()"
+            />
+            <ng-template #loadingTemplate>CALMO</ng-template>
+          </div>
+          <!-- <button
+            class="btn my-btn ms-4 mt-2 w-100"
+            (click)="onClickUploadButton()"
+          >
+            Carica Avatar
+          </button> -->
         </div>
-        <button class="btn btn-primary mt-2" (click)="onClickUploadButton()">
-          Carica Avatar
-        </button>
         <input
           type="file"
           id="avatarInput"
@@ -29,7 +43,10 @@
     </div>
   </div>
 
-  <div class="row justify-content-center gap-5 gap-lg-2 mt-5">
+  <div
+    class="row justify-content-center gap-5 gap-lg-2 mt-5"
+    *ngIf="products && products.length > 0; else noProdTemplate"
+  >
     <div
       class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0"
       *ngFor="let product of products"
@@ -60,4 +77,7 @@
       </div>
     </div>
   </div>
+  <ng-template #noProdTemplate>
+    <h1 class="mt-5 text-center">Non hai nessun prodotto in vendita</h1>
+  </ng-template>
 </div>
