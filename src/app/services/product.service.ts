@@ -10,7 +10,7 @@ export class ProductService {
   private apiURL = environment.apiURL;
   constructor(private http: HttpClient) {}
 
-  addProduct(productData: NewProduct): Observable<Product> {
+  addProduct(productData: NewProduct) {
     return this.http.post<Product>(`${this.apiURL}/products`, productData);
   }
 

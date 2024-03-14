@@ -14,3 +14,9 @@ export interface User {
 export interface UserAvatar {
   avatarUrl: string;
 }
+export interface ModifyUser {
+  name: string;
+  surname: string;
+  email: string;
+  username: string;
+}

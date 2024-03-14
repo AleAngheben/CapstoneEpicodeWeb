@@ -2,23 +2,22 @@
   <div class="border-mine d-flex justify-content-center">
     <div class="row p-4 border-mine2 bg-white m-0">
       <div
-        class="col-2"
+        class="col-2 position-relative"
         *ngIf="user && user.avatarUrl"
         id="profile-img-container"
       >
         <div class="d-flex flex-column align-items-center">
-          <div class="w-100 rounded-5 object-fit-cover position-relative">
-            <!-- <i
-              class="bi bi-pencil-square position-absolute fs-5 end-0"
+          <div class="w-100 rounded-5 object-fit-cover">
+            <i
+              class="bi bi-pencil-square position-absolute fs-5 end-0 pointer"
               (click)="onClickUploadButton()"
-            ></i> -->
+            ></i>
             <img
               *ngIf="imageSwitch; else loadingTemplate"
               src="{{ user.avatarUrl }}"
               alt=""
               class="w-100 rounded-50"
               id="profile-img"
-              (click)="onClickUploadButton()"
             />
             <ng-template #loadingTemplate>CALMO</ng-template>
           </div>
@@ -36,9 +35,18 @@
           (change)="onFileSelected($event)"
         />
       </div>
-      <div class="col-9 offset-1">
-        <h3>{{ user?.name }} {{ user?.surname }}</h3>
-        <p>{{ user?.username }}</p>
+      <div class="col-9 offset-1 position-relative">
+        <i
+          class="bi bi-pencil-square position-absolute fs-5 end-0"
+          (click)="openDialog()"
+        ></i>
+        <h1>{{ user?.name }} {{ user?.surname }}</h1>
+        <h4>{{ user?.username }}</h4>
+        <p class="pt-5 fs-4">EMAIL: {{ user?.email }}</p>
+        <p class="fs-4">
+          PRODOTTI IN VENDITA:
+          <span class="fw-bolder">{{ products?.length }}</span>
+        </p>
       </div>
     </div>
   </div>

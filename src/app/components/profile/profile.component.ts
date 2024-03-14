@@ -1,14 +1,16 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Product, ProductOnSell } from 'src/app/interfaces/new-product';
 import { User } from 'src/app/interfaces/user';
 import { ProductService } from 'src/app/services/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogUserComponent } from '../dialog-user/dialog-user.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit, OnChanges {
+export class ProfileComponent implements OnInit {
   user: User | undefined;
   products: ProductOnSell[] | undefined = [];
   file: File = new File([''], '');
@@ -17,11 +19,9 @@ export class ProfileComponent implements OnInit, OnChanges {
 
   constructor(
     private authSrv: AuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    public dialog: MatDialog
   ) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
-  }
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -48,6 +48,14 @@ export class ProfileComponent implements OnInit, OnChanges {
         console.error('Error loading products:', error);
       }
     );
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogUserComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getUserProfile();
+    });
   }
 
   //-----------------------------------------

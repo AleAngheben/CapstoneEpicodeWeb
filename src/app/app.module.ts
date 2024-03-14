@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth.guard';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './auth/registration/registration/registration.component';
@@ -15,6 +16,9 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
 import { BackofficeComponent } from './components/backoffice/backoffice.component';
+import { DialogUserComponent } from './components/dialog-user/dialog-user.component';
+import { DialogProductComponent } from './components/dialog-product/dialog-product.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Route[] = [
   {
@@ -62,6 +66,8 @@ const routes: Route[] = [
     ProfileComponent,
     CartComponent,
     BackofficeComponent,
+    DialogUserComponent,
+    DialogProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,8 +75,11 @@ const routes: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
+    ProfileComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

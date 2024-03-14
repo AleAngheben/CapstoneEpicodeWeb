@@ -1,0 +1,42 @@
+<h2>Modifica informazioni utente</h2>
+
+<form #form="ngForm" (submit)="modifyUser(form)" *ngIf="user">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="user.name"
+      name="name"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="surname" class="form-label">Cognome</label>
+    <input
+      type="text"
+      class="form-control"
+      name="surname"
+      [(ngModel)]="user.surname"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      name="username"
+      [(ngModel)]="user.username"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      [(ngModel)]="user.email"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
