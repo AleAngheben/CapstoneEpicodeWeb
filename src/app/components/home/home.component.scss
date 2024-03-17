@@ -41,3 +41,26 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.my-hero {
+  background-color: #d0d1ff;
+  height: 300px;
+  border-radius: 20px;
+}
+.hero-title {
+  font-size: 5rem;
+  color: #603eab;
+  font-weight: bold;
+}
+.hero-btn {
+  background-color: white;
+  border-color: #603eab;
+  color: #603eab;
+  font-weight: bold;
+}
+.hero-btn:hover {
+  background-color: #603eab;
+  border-color: transparent;
+  color: white;
+  font-weight: bold;
+}

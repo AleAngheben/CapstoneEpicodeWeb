@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -13,20 +12,27 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $CapstoneEpicodeWeb-primary: mat.define-palette(mat.$indigo-palette);
-$CapstoneEpicodeWeb-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$CapstoneEpicodeWeb-accent: mat.define-palette(
+  mat.$pink-palette,
+  A200,
+  A100,
+  A400
+);
 
 // The warn palette is optional (defaults to red).
 $CapstoneEpicodeWeb-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$CapstoneEpicodeWeb-theme: mat.define-light-theme((
-  color: (
-    primary: $CapstoneEpicodeWeb-primary,
-    accent: $CapstoneEpicodeWeb-accent,
-    warn: $CapstoneEpicodeWeb-warn,
+$CapstoneEpicodeWeb-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $CapstoneEpicodeWeb-primary,
+      accent: $CapstoneEpicodeWeb-accent,
+      warn: $CapstoneEpicodeWeb-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -40,5 +46,37 @@ $CapstoneEpicodeWeb-theme: mat.define-light-theme((
   cursor: pointer;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--colore-main);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--colore-trasparent);
+}
+
+::-moz-scrollbar {
+  width: 5px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: var(--colore-main);
+  border-radius: 10px;
+}
+
+::-moz-scrollbar-track {
+  background-color: var(--colore-trasparent);
+}

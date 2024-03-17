@@ -1,56 +1,62 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="w-100 mb-5 card text-bg-dark rounded-5">
-      <img
-        src="../../../assets/imgs/SwiftCartLogo.png"
-        class="card-img"
-        alt="..."
-      />
-
-      <div class="card-img-overlay">
-        <h5 class="card-title fs-big">SCONTI ESTREMI!</h5>
-        <p class="card-text">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </p>
-        <p class="card-text"><small>Last updated 3 mins ago</small></p>
-      </div>
-    </div>
+<div class="w-100 mb-5 my-hero">
+  <p class="text-center pt-5 hero-title">VENDI - COMPRA - RISPARMIA !</p>
+  <div class="d-flex justify-content-center gap-5 pt-3">
+    <button class="hero-btn btn rounded-5 p-2 px-4">
+      <a class="text-decoration-none my-color" [routerLink]="['/cart']"
+        >CARRELLO</a
+      >
+    </button>
+    <button class="hero-btn btn rounded-5 p-2 px-4">
+      <a class="text-decoration-none my-color" [routerLink]="['/profile']"
+        >PROFILO</a
+      >
+    </button>
+    <button class="hero-btn btn rounded-5 p-2 px-4">
+      <a
+        class="text-decoration-none my-color"
+        [routerLink]="['/postingProduct']"
+        >VENDI</a
+      >
+    </button>
   </div>
+</div>
+<div class="container mt-5">
   <div class="row justify-content-center gap-5 gap-lg-2">
-    <div
-      class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0"
-      *ngFor="let product of products"
-    >
-      <img
-        src="{{ product.productImg }}"
-        class="card-img-top product-img"
-        alt="{{ product.name }}"
-      />
+    <ng-container *ngFor="let product of products">
+      <div
+        class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0"
+        *ngIf="product.seller.id !== user?.id"
+      >
+        <img
+          src="{{ product.productImg }}"
+          class="card-img-top product-img"
+          alt="{{ product.name }}"
+        />
 
-      <div class="card-body product-body">
-        <div class="d-flex justify-content-between">
-          <div>
-            <h5 class="card-title">
-              {{ product.name }}
-            </h5>
+        <div class="card-body product-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h5 class="card-title">
+                {{ product.name }}
+              </h5>
+            </div>
+            <div>O</div>
           </div>
-          <div>O</div>
-        </div>
-        <p class="card-text">
-          {{ product.seller.username }}
-        </p>
-        <p class="card-text fs-3">{{ product.price }} €</p>
+          <p class="card-text">
+            {{ product.seller.username }}
+          </p>
+          <p class="card-text fs-3">{{ product.price }} €</p>
 
-        <button
-          (click)="addToCart(product.id)"
-          class="btn bg-mine text-white w-100"
-          id="buyable"
-          [disabled]="user?.id === product.seller.id"
-        >
-          Add to Cart
-        </button>
+          <button
+            (click)="addToCart(product.id)"
+            class="btn bg-mine text-white w-100"
+            id="buyable"
+            [disabled]="user?.id === product.seller.id"
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
