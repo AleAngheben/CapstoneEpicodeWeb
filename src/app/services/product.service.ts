@@ -3,6 +3,7 @@ import { Product, NewProduct, ProductOnSell } from '../interfaces/new-product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,8 +11,18 @@ export class ProductService {
   private apiURL = environment.apiURL;
   constructor(private http: HttpClient) {}
 
-  addProduct(productData: NewProduct) {
+  addProduct(productData: Partial<NewProduct>) {
     return this.http.post<Product>(`${this.apiURL}/products`, productData);
+  }
+
+  uploadAvatar(formData: FormData): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+
+    return this.http.post<any>(`${this.apiURL}/products/uploadImg`, formData, {
+      headers: headers,
+    });
   }
 
   getMyProductsOnSale(): Observable<ProductOnSell[]> {

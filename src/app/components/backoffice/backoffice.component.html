@@ -1,31 +1,40 @@
-<form [formGroup]="productForm" (ngSubmit)="createProduct()">
+<form (ngSubmit)="createProduct()">
   <div class="form-group">
     <label for="name">Nome prodotto:</label>
-    <input type="text" class="form-control" id="name" formControlName="name" />
+    <input
+      [(ngModel)]="productData.name"
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+    />
   </div>
   <div class="form-group">
     <label for="description">Descrizione:</label>
     <textarea
+      [(ngModel)]="productData.description"
       class="form-control"
       id="description"
-      formControlName="description"
+      name="description"
     ></textarea>
   </div>
   <div class="form-group">
     <label for="price">Prezzo:</label>
     <input
+      [(ngModel)]="productData.price"
       type="number"
       class="form-control"
       id="price"
-      formControlName="price"
+      name="price"
     />
   </div>
   <div class="form-group">
     <label for="type">Categoria:</label>
     <select
+      [(ngModel)]="productData.type"
       class="form-select"
       aria-label="Default select example"
-      formControlName="type"
+      name="type"
     >
       <option selected>Open this select menu</option>
       <option value="VIDEOGAMES">VIDEOGAMES</option>
@@ -38,12 +47,16 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="productImg">Descrizione:</label>
-    <textarea
+    <label for="productImg">Immagine:</label>
+    <input
+      #productImg
+      type="file"
       class="form-control"
       id="productImg"
-      formControlName="productImg"
-    ></textarea>
+      name="productImg"
+      (change)="onFileSelected($event)"
+    />
   </div>
+
   <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
 </form>
