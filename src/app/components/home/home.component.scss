@@ -16,6 +16,9 @@
   color: #603eab;
 }
 
+.white {
+  color: white;
+}
 .card {
   width: 300px;
   min-height: 450px;
@@ -63,4 +66,12 @@
   border-color: transparent;
   color: white;
   font-weight: bold;
+}
+.hero-btn > a {
+  text-decoration: none;
+  color: #603eab;
+}
+
+.hero-btn > a:hover {
+  color: white;
 }

@@ -2,21 +2,13 @@
   <p class="text-center pt-5 hero-title">VENDI - COMPRA - RISPARMIA !</p>
   <div class="d-flex justify-content-center gap-5 pt-3">
     <button class="hero-btn btn rounded-5 p-2 px-4">
-      <a class="text-decoration-none my-color" [routerLink]="['/cart']"
-        >CARRELLO</a
-      >
+      <a [routerLink]="['/cart']">CARRELLO</a>
     </button>
     <button class="hero-btn btn rounded-5 p-2 px-4">
-      <a class="text-decoration-none my-color" [routerLink]="['/profile']"
-        >PROFILO</a
-      >
+      <a [routerLink]="['/profile']">PROFILO</a>
     </button>
-    <button class="hero-btn btn rounded-5 p-2 px-4">
-      <a
-        class="text-decoration-none my-color"
-        [routerLink]="['/postingProduct']"
-        >VENDI</a
-      >
+    <button class="hero-btn btn rounded-5 p-2 px-4" (click)="openBackoffice()">
+      VENDI
     </button>
   </div>
 </div>
@@ -40,7 +32,9 @@
                 {{ product.name }}
               </h5>
             </div>
-            <div>O</div>
+            <div>
+              <span><i class="bi bi-heart"></i></span>
+            </div>
           </div>
           <p class="card-text">
             {{ product.seller.username }}

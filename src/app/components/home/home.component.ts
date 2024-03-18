@@ -7,6 +7,9 @@ import { Product } from 'src/app/interfaces/new-product';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BackofficeComponent } from '../backoffice/backoffice.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,7 +29,9 @@ export class HomeComponent implements OnInit {
     private HomeService: HomeService,
     private activatedRoute: ActivatedRoute,
     private authSrv: AuthService,
-    private cartSrv: CartService
+    private cartSrv: CartService,
+    private userSrv: UserService,
+    public dialog: MatDialog
   ) {
     this.page = 0;
     this.size = 10;
@@ -73,5 +78,13 @@ export class HomeComponent implements OnInit {
     } else {
       this.buyable = true;
     }
+  }
+  openBackoffice() {
+    const dialogRef = this.dialog.open(BackofficeComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getUserProfile();
+      this.getProducts();
+    });
   }
 }

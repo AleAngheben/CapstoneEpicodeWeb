@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { NewProduct, Product } from 'src/app/interfaces/new-product';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-backoffice',
   templateUrl: './backoffice.component.html',
@@ -11,10 +12,13 @@ import { NewProduct, Product } from 'src/app/interfaces/new-product';
 })
 export class BackofficeComponent implements OnInit {
   file: File = new File([''], '');
+  selectedImageURL: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private prodSrv: ProductService,
-    private authSrv: AuthService
+    private authSrv: AuthService,
+    public dialog: MatDialog
   ) {}
 
   productData: NewProduct = {
@@ -27,10 +31,21 @@ export class BackofficeComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // onFileSelected(event: any) {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     this.file = file;
+  //   }
+  // }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
       this.file = file;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.selectedImageURL = e.target?.result as string;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -45,6 +60,7 @@ export class BackofficeComponent implements OnInit {
             if (response.id) {
               this.uploadAvatar(this.file, response.id);
               alert('Prodotto aggiunto con successo');
+              this.dialog.closeAll();
             }
           },
           (error) => {

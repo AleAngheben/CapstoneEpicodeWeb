@@ -1,62 +1,71 @@
-<form (ngSubmit)="createProduct()">
-  <div class="form-group">
-    <label for="name">Nome prodotto:</label>
-    <input
-      [(ngModel)]="productData.name"
-      type="text"
-      class="form-control"
-      id="name"
-      name="name"
-    />
-  </div>
-  <div class="form-group">
-    <label for="description">Descrizione:</label>
-    <textarea
-      [(ngModel)]="productData.description"
-      class="form-control"
-      id="description"
-      name="description"
-    ></textarea>
-  </div>
-  <div class="form-group">
-    <label for="price">Prezzo:</label>
-    <input
-      [(ngModel)]="productData.price"
-      type="number"
-      class="form-control"
-      id="price"
-      name="price"
-    />
-  </div>
-  <div class="form-group">
-    <label for="type">Categoria:</label>
-    <select
-      [(ngModel)]="productData.type"
-      class="form-select"
-      aria-label="Default select example"
-      name="type"
-    >
-      <option selected>Open this select menu</option>
-      <option value="VIDEOGAMES">VIDEOGAMES</option>
-      <option value="BABY">BABY</option>
-      <option value="BOOKS">BOOKS</option>
-      <option value="ELECTRONICS">ELECTRONICS</option>
-      <option value="CLOTHING">CLOTHING</option>
-      <option value="BEAUTY">BEAUTY</option>
-      <option value="SPORT">SPORT</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="productImg">Immagine:</label>
-    <input
-      #productImg
-      type="file"
-      class="form-control"
-      id="productImg"
-      name="productImg"
-      (change)="onFileSelected($event)"
-    />
-  </div>
+<h2 class="text-center">Dati del prodotto</h2>
+<div class="d-flex gap-5 m-5">
+  <form (ngSubmit)="createProduct()">
+    <div class="form-group">
+      <label for="name">Nome prodotto:</label>
+      <input
+        [(ngModel)]="productData.name"
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Descrizione:</label>
+      <textarea
+        [(ngModel)]="productData.description"
+        class="form-control"
+        id="description"
+        name="description"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Prezzo:</label>
+      <input
+        [(ngModel)]="productData.price"
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+      />
+    </div>
+    <div class="form-group">
+      <label for="type">Categoria:</label>
+      <select
+        [(ngModel)]="productData.type"
+        class="form-select"
+        aria-label="Default select example"
+        name="type"
+      >
+        <option selected>Open this select menu</option>
+        <option value="VIDEOGAMES">VIDEOGAMES</option>
+        <option value="BABY">BABY</option>
+        <option value="BOOKS">BOOKS</option>
+        <option value="ELECTRONICS">ELECTRONICS</option>
+        <option value="CLOTHING">CLOTHING</option>
+        <option value="BEAUTY">BEAUTY</option>
+        <option value="SPORT">SPORT</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="productImg">Immagine:</label>
+      <input
+        #productImg
+        type="file"
+        class="form-control"
+        id="productImg"
+        name="productImg"
+        (change)="onFileSelected($event)"
+      />
+    </div>
 
-  <button type="submit" class="btn btn-primary">Aggiungi Prodotto</button>
-</form>
+    <button type="submit" class="hero-btn btn rounded-5 p-2 px-4">
+      Aggiungi Prodotto
+    </button>
+  </form>
+  <div *ngIf="selectedImageURL">
+    <label class="d-block">Anteprima immagine </label>
+    <img [src]="selectedImageURL" alt="Anteprima" style="max-width: 200px" />
+  </div>
+</div>
