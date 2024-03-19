@@ -14,7 +14,7 @@
             ></i>
             <img
               *ngIf="imageSwitch; else loadingTemplate"
-              src="{{ user.avatarUrl }}"
+              src="{{ user!.avatarUrl }}"
               alt=""
               class="w-100 rounded-50"
               id="profile-img"
@@ -79,7 +79,10 @@
         </p>
         <p class="card-text fs-3">{{ product.price }} €</p>
 
-        <button class="btn bg-mine2 text-white fw-bolder w-100">
+        <button
+          class="btn bg-mine2 text-white fw-bolder w-100"
+          (click)="editProduct(product.id)"
+        >
           Modifica
         </button>
       </div>

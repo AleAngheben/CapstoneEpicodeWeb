@@ -31,6 +31,12 @@ export interface Product {
   productImg: string;
   seller: User;
 }
+export interface ProductModify {
+  name: string;
+  description: string;
+  price: number;
+  type: string;
+}
 
 export interface ProductOnSell {
   id: string;

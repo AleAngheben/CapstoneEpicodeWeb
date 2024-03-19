@@ -5,6 +5,7 @@ import { User } from 'src/app/interfaces/user';
 import { ProductService } from 'src/app/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogUserComponent } from '../dialog-user/dialog-user.component';
+import { ProductOfficeComponent } from '../product-office/product-office.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -58,6 +59,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  editProduct(id: string): void {
+    const dialogRef = this.dialog.open(ProductOfficeComponent, {
+      data: { id: id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.loadProductsOnSale();
+    });
+  }
   //-----------------------------------------
 
   onFileSelected(event: any) {

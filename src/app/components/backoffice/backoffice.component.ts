@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { NewProduct, Product } from 'src/app/interfaces/new-product';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-backoffice',
   templateUrl: './backoffice.component.html',
@@ -31,12 +31,6 @@ export class BackofficeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // onFileSelected(event: any) {
-  //   const file: File = event.target.files[0];
-  //   if (file) {
-  //     this.file = file;
-  //   }
-  // }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {

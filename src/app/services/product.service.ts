@@ -30,4 +30,21 @@ export class ProductService {
       `${this.apiURL}/products/myProductsOnSale`
     );
   }
+  getProductById(productId: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiURL}/products/${productId}`);
+  }
+  updateProduct(
+    productId: string,
+    modifiedProduct: {
+      name: string;
+      description: string;
+      type: string;
+      price: number;
+    }
+  ): Observable<Product> {
+    return this.http.put<Product>(
+      `${this.apiURL}/products/${productId}`,
+      modifiedProduct
+    );
+  }
 }
