@@ -47,4 +47,7 @@ export class ProductService {
       modifiedProduct
     );
   }
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.apiURL}/products/${id}`);
+  }
 }

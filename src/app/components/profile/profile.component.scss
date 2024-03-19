@@ -119,3 +119,9 @@
   height: calc(100% - 16px);
   // -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
 }
+.delete-btn {
+  display: none;
+}
+.p-card:hover .delete-btn {
+  display: block;
+}

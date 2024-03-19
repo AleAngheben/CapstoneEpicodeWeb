@@ -102,4 +102,18 @@ export class ProfileComponent implements OnInit {
       fileInput.click();
     }
   }
+
+  deleteProduct(id: string) {
+    const confirmDelete = confirm(
+      'Sei sicuro di voler eliminare questo prodotto?'
+    );
+    this.productService.deleteProduct(id).subscribe(
+      () => {
+        console.log('Prodotto eliminato con successo');
+      },
+      (error) => {
+        console.error("Errore durante l'eliminazione del prodotto:", error);
+      }
+    );
+  }
 }

@@ -56,9 +56,16 @@
     *ngIf="products && products.length > 0; else noProdTemplate"
   >
     <div
-      class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0"
+      class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0 position-relative p-card"
       *ngFor="let product of products"
     >
+      <button
+        class="btn btn-danger position-absolute m-1 end-0 delete-btn"
+        (click)="deleteProduct(product.id)"
+      >
+        X
+      </button>
+
       <img
         src="{{ product.productImg }}"
         class="card-img-top product-img"
