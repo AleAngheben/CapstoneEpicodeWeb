@@ -20,6 +20,7 @@ import { DialogUserComponent } from './components/dialog-user/dialog-user.compon
 import { DialogProductComponent } from './components/dialog-product/dialog-product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductOfficeComponent } from './components/product-office/product-office.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 const routes: Route[] = [
   {
@@ -51,6 +52,11 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'details/:id',
+    component: ProductDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'editProduct/:id',
     component: BackofficeComponent,
     canActivate: [AuthGuard],
@@ -75,6 +81,7 @@ const routes: Route[] = [
     DialogUserComponent,
     DialogProductComponent,
     ProductOfficeComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

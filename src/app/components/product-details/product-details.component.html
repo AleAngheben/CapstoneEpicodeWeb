@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row" *ngIf="product">
+    <div class="col-3"><img src="{{ product.productImg }}" alt="" /></div>
+    <div class="col">
+      <span>{{ product.name }}</span>
+      <p>{{ product.description }}</p>
+      <p>{{ product.price }}</p>
+    </div>
+  </div>
+</div>

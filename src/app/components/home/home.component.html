@@ -16,16 +16,24 @@
   <div class="row justify-content-center gap-5 gap-lg-2">
     <ng-container *ngFor="let product of products">
       <div
-        class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0"
+        class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0 pointer"
         *ngIf="product.seller.id !== user?.id"
       >
+        <button
+          class="btn btn-danger position-absolute m-1 end-0 delete-btn"
+          (click)="deleteProduct(product.id)"
+          *ngIf="isAdmin"
+        >
+          X
+        </button>
+
         <img
           src="{{ product.productImg }}"
           class="card-img-top product-img"
           alt="{{ product.name }}"
         />
 
-        <div class="card-body product-body">
+        <div class="card-body product-body" (click)="onCardClick(product.id)">
           <div class="d-flex justify-content-between">
             <div>
               <h5 class="card-title">
@@ -45,10 +53,13 @@
             (click)="addToCart(product.id)"
             class="btn bg-mine text-white w-100"
             id="buyable"
-            [disabled]="user?.id === product.seller.id"
+            [disabled]="user.id === product.seller.id"
           >
             Add to Cart
           </button>
+          <!-- <button (click)="onCardClick(product.id)" class="btn btn-primary">
+            INFO
+          </button> -->
         </div>
       </div>
     </ng-container>

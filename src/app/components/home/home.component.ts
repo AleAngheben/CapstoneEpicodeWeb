@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { ProductResponse } from 'src/app/interfaces/new-product';
 import { HomeService } from 'src/app/services/home.service';
 import { Observable } from 'rxjs/internal/Observable';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/new-product';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CartService } from 'src/app/services/cart.service';
@@ -10,6 +10,7 @@ import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BackofficeComponent } from '../backoffice/backoffice.component';
+import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -23,15 +24,18 @@ export class HomeComponent implements OnInit {
   size!: number;
   totalElements!: number;
   totalPages!: number;
-  user: User | undefined;
+  user!: User;
   buyable: boolean = false;
+  isAdmin: boolean = false;
   constructor(
     private HomeService: HomeService,
     private activatedRoute: ActivatedRoute,
     private authSrv: AuthService,
     private cartSrv: CartService,
     private userSrv: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private prodSrv: ProductService,
+    private router: Router
   ) {
     this.page = 0;
     this.size = 10;
@@ -40,11 +44,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
-
     this.getProducts();
+    console.log(this.user);
   }
 
-  //devo guardare qua cosa devo fare!
   getProducts() {
     this.HomeService.getProducts().subscribe((response: any) => {
       this.products = response.content;
@@ -64,7 +67,8 @@ export class HomeComponent implements OnInit {
     this.authSrv.getMyProfile().subscribe(
       (user: User) => {
         this.user = user;
-        // this.getMyProductsOnSell();
+        this.isAdminRole();
+        console.log(this.user);
       },
       (error) => {
         console.error('Errore nel recupero del profilo utente:', error);
@@ -86,5 +90,27 @@ export class HomeComponent implements OnInit {
       this.getUserProfile();
       this.getProducts();
     });
+  }
+  deleteProduct(id: string) {
+    const confirmDelete = confirm(
+      'Sei sicuro di voler eliminare questo prodotto?'
+    );
+    this.prodSrv.deleteProduct(id).subscribe(
+      () => {
+        console.log('Prodotto eliminato con successo');
+        this.getProducts();
+      },
+      (error) => {
+        console.error("Errore durante l'eliminazione del prodotto:", error);
+      }
+    );
+  }
+  isAdminRole() {
+    if (this.user && this.user.role && this.user.role === 'ADMIN') {
+      this.isAdmin = true;
+    }
+  }
+  onCardClick(id: string) {
+    this.router.navigate([`/details/${id}`]);
   }
 }

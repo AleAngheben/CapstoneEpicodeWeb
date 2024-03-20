@@ -75,3 +75,12 @@
 .hero-btn > a:hover {
   color: white;
 }
+.delete-btn {
+  display: none;
+}
+.product-card:hover .delete-btn {
+  display: block;
+}
+.pointer {
+  cursor: pointer;
+}

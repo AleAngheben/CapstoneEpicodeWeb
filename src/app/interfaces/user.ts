@@ -7,7 +7,7 @@ export interface User {
   email: string;
   avatarUrl: string;
   username: string;
-  type: string;
+  role: string;
   productsOnSell: Product[];
 }
 
