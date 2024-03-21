@@ -21,7 +21,13 @@ import { DialogProductComponent } from './components/dialog-product/dialog-produ
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductOfficeComponent } from './components/product-office/product-office.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
+//snackbar
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 const routes: Route[] = [
   {
     path: 'home',
@@ -82,6 +88,7 @@ const routes: Route[] = [
     DialogProductComponent,
     ProductOfficeComponent,
     ProductDetailsComponent,
+    SnackBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,9 +98,14 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     ProfileComponent,
+    SnackBarComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

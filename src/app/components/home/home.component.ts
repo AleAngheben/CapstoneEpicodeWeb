@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BackofficeComponent } from '../backoffice/backoffice.component';
 import { ProductService } from 'src/app/services/product.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -35,7 +37,9 @@ export class HomeComponent implements OnInit {
     private userSrv: UserService,
     public dialog: MatDialog,
     private prodSrv: ProductService,
-    private router: Router
+    private router: Router,
+
+    private snackBar: SnackBarComponent
   ) {
     this.page = 0;
     this.size = 10;
@@ -57,6 +61,7 @@ export class HomeComponent implements OnInit {
     this.cartSrv.addItemToCart(productId).subscribe(
       (response) => {
         console.log('Prodotto aggiunto al carrello', response);
+        this.showSnackbar('Prodotto aggiunto al carrello');
       },
       (error) => {
         console.error('Errore :', error);
@@ -112,5 +117,13 @@ export class HomeComponent implements OnInit {
   }
   onCardClick(id: string) {
     this.router.navigate([`/details/${id}`]);
+  }
+  // openSnackbar(message: string) {
+  //   this.snackBar.open(message, 'Chiudi', {
+  //     duration: 3000,
+  //   });
+  // }
+  showSnackbar(message: string) {
+    this.snackBar.successSnackbar(message, 'Chiudi');
   }
 }
