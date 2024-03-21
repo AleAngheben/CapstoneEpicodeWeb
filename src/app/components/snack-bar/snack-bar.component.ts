@@ -12,7 +12,7 @@ import {
 export class SnackBarComponent {
   constructor(private _snackBar: MatSnackBar) {}
 
-  successSnackbar(message: string, action: string) {
+  successSnackbar(message: string, action: string = 'Chiudi') {
     this._snackBar.open(message, action, {
       panelClass: ['success-snackbar'],
       horizontalPosition: 'end',
@@ -20,7 +20,7 @@ export class SnackBarComponent {
       verticalPosition: 'bottom',
     });
   }
-  errorSnackbar(message: string, action: string) {
+  errorSnackbar(message: string, action: string = 'Chiudi') {
     this._snackBar.open(message, action, {
       panelClass: ['error-snackbar'],
       horizontalPosition: 'end',
@@ -28,7 +28,7 @@ export class SnackBarComponent {
       verticalPosition: 'bottom',
     });
   }
-  yellowSnackbar(message: string, action: string) {
+  yellowSnackbar(message: string, action: string = 'Chiudi') {
     this._snackBar.open(message, action, {
       panelClass: ['yellow-snackbar'],
       horizontalPosition: 'end',

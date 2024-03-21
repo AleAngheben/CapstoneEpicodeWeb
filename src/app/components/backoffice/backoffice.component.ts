@@ -5,6 +5,7 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { NewProduct, Product } from 'src/app/interfaces/new-product';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 @Component({
   selector: 'app-backoffice',
   templateUrl: './backoffice.component.html',
@@ -18,7 +19,8 @@ export class BackofficeComponent implements OnInit {
     private fb: FormBuilder,
     private prodSrv: ProductService,
     private authSrv: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: SnackBarComponent
   ) {}
 
   productData: NewProduct = {
@@ -53,8 +55,9 @@ export class BackofficeComponent implements OnInit {
             console.log('Prodotto creato con successo');
             if (response.id) {
               this.uploadAvatar(this.file, response.id);
-              alert('Prodotto aggiunto con successo');
+
               this.dialog.closeAll();
+              this.snackBar.successSnackbar('Prodotto creato con successo');
             }
           },
           (error) => {

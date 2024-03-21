@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { SnackBarComponent } from 'src/app/components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
   passwordVisible: boolean = false;
 
-  constructor(private authSrv: AuthService, private router: Router) {}
+  constructor(
+    private authSrv: AuthService,
+    private router: Router,
+    private snackBar: SnackBarComponent
+  ) {}
 
   ngOnInit(): void {}
 
@@ -24,10 +29,11 @@ export class LoginComponent implements OnInit {
     try {
       this.authSrv.login(data).subscribe();
       this.router.navigate(['/home']);
+      this.snackBar.successSnackbar('Login effettuato');
     } catch (error) {
-      alert('Login errato');
       console.log(error);
       this.router.navigate(['/login']);
+      this.snackBar.errorSnackbar('Login errato!');
     }
   }
 

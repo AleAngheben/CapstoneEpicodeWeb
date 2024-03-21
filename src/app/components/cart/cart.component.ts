@@ -5,6 +5,7 @@ import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Cart } from 'src/app/interfaces/cart';
 import { Item } from 'src/app/interfaces/item';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,7 +15,11 @@ export class CartComponent implements OnInit {
   productsOnCart: Item[] | undefined = [];
   user: User | undefined;
   cart: Cart | undefined;
-  constructor(private cartSrv: CartService, private authSrv: AuthService) {}
+  constructor(
+    private cartSrv: CartService,
+    private authSrv: AuthService,
+    private snackBar: SnackBarComponent
+  ) {}
 
   ngOnInit(): void {
     this.getUserProfile();
@@ -52,6 +57,7 @@ export class CartComponent implements OnInit {
     this.cartSrv.deleteItemFromCart(itemId).subscribe(
       () => {
         this.loadMyCart();
+        this.snackBar.yellowSnackbar('Elemento eliminato');
       },
       (error) => {
         console.error(
@@ -67,6 +73,7 @@ export class CartComponent implements OnInit {
     this.cartSrv.itemPlusOnCart(itemId).subscribe(
       () => {
         this.loadMyCart();
+        this.snackBar.successSnackbar('Quantità aumentata');
       },
       (error) => {
         console.error(
@@ -82,6 +89,7 @@ export class CartComponent implements OnInit {
     this.cartSrv.itemMinusOnCart(productId).subscribe(
       () => {
         this.loadMyCart();
+        this.snackBar.yellowSnackbar('Quantità diminuita');
       },
       (error) => {
         console.error(

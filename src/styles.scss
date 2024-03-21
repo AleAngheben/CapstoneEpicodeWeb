@@ -83,24 +83,16 @@ body {
 .success-snackbar {
   background-color: green; /* Imposta il colore di sfondo dello Snackbar */
   color: white; /* Imposta il colore del testo */
-  $success-action-color: white;
 }
 .error-snackbar {
-  background-color: #2196f3; /* Imposta il colore di sfondo dello Snackbar */
+  background-color: red; /* Imposta il colore di sfondo dello Snackbar */
   color: white; /* Imposta il colore del testo */
 }
 .yellow-snackbar {
-  background-color: #2196f3; /* Imposta il colore di sfondo dello Snackbar */
+  background-color: blue; /* Imposta il colore di sfondo dello Snackbar */
   color: white; /* Imposta il colore del testo */
 }
-.success-action-color {
-  color: white; // Colore del testo dell'azione per lo Snackbar di successo
-}
 
-.error-action-color {
-  color: white; // Colore del testo dell'azione per lo Snackbar di errore
-}
-
-.yellow-action-color {
-  color: black; // Colore del testo dell'azione per lo Snackbar giallo
+.mat-button-wrapper {
+  color: white;
 }

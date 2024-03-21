@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogUserComponent } from '../dialog-user/dialog-user.component';
 import { ProductOfficeComponent } from '../product-office/product-office.component';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authSrv: AuthService,
     private productService: ProductService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: SnackBarComponent
   ) {}
 
   ngOnInit(): void {
@@ -109,8 +111,8 @@ export class ProfileComponent implements OnInit {
     );
     this.productService.deleteProduct(id).subscribe(
       () => {
-        console.log('Prodotto eliminato con successo');
         this.loadProductsOnSale();
+        this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
       },
       (error) => {
         console.error("Errore durante l'eliminazione del prodotto:", error);

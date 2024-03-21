@@ -9,6 +9,7 @@ import {
   ProductModify,
 } from 'src/app/interfaces/new-product';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 @Component({
   selector: 'app-product-office',
   templateUrl: './product-office.component.html',
@@ -23,6 +24,7 @@ export class ProductOfficeComponent implements OnInit {
     private prodSrv: ProductService,
     private authSrv: AuthService,
     public dialog: MatDialog,
+    private snackBar: SnackBarComponent,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -75,9 +77,9 @@ export class ProductOfficeComponent implements OnInit {
     if (this.productDataForm.valid && this.productId) {
       const modifiedProduct = this.productDataForm.value;
       this.prodSrv.updateProduct(this.productId, modifiedProduct).subscribe(
-        (updatedProduct) => {
-          console.log('Prodotto aggiornato con successo:', updatedProduct);
+        () => {
           this.dialog.closeAll();
+          this.snackBar.successSnackbar('Prodotto aggiornato con successo');
         },
         (error) => {
           console.error("Errore durante l'aggiornamento del prodotto:", error);

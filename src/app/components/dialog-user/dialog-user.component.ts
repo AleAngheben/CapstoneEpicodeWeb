@@ -12,6 +12,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProfileComponent } from '../profile/profile.component';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 @Component({
   selector: 'app-dialog-user',
   templateUrl: './dialog-user.component.html',
@@ -25,7 +26,8 @@ export class DialogUserComponent implements OnInit {
     private authSrv: AuthService,
     private UserSrv: UserService,
     private fb: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: SnackBarComponent
   ) {}
   ngOnInit(): void {
     this.getUserProfile();
@@ -67,6 +69,7 @@ export class DialogUserComponent implements OnInit {
     this.UserSrv.updateUser(form.value).subscribe(() => {
       this.getUserProfile();
       this.dialog.closeAll();
+      this.snackBar.successSnackbar('Modifica effettuata');
     });
   }
 }

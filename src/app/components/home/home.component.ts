@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
     this.cartSrv.addItemToCart(productId).subscribe(
       (response) => {
         console.log('Prodotto aggiunto al carrello', response);
-        this.showSnackbar('Prodotto aggiunto al carrello');
+        this.snackBar.successSnackbar('Prodotto aggiunto al carrello');
       },
       (error) => {
         console.error('Errore :', error);
@@ -104,6 +104,7 @@ export class HomeComponent implements OnInit {
       () => {
         console.log('Prodotto eliminato con successo');
         this.getProducts();
+        this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
       },
       (error) => {
         console.error("Errore durante l'eliminazione del prodotto:", error);
@@ -117,13 +118,5 @@ export class HomeComponent implements OnInit {
   }
   onCardClick(id: string) {
     this.router.navigate([`/details/${id}`]);
-  }
-  // openSnackbar(message: string) {
-  //   this.snackBar.open(message, 'Chiudi', {
-  //     duration: 3000,
-  //   });
-  // }
-  showSnackbar(message: string) {
-    this.snackBar.successSnackbar(message, 'Chiudi');
   }
 }

@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { SnackBarComponent } from 'src/app/components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +18,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authSrv: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: SnackBarComponent
   ) {}
 
   confirmPasswordCorrected() {
@@ -70,6 +72,7 @@ export class RegistrationComponent implements OnInit {
     try {
       this.authSrv.register(data).subscribe();
       this.router.navigate(['/login']);
+      this.snackBar.successSnackbar('Registrazione effettuata');
     } catch (error) {
       console.log(error);
       alert(error);
