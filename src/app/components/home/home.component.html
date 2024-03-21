@@ -31,9 +31,10 @@
           src="{{ product.productImg }}"
           class="card-img-top product-img"
           alt="{{ product.name }}"
+          (click)="onCardClick(product.id)"
         />
 
-        <div class="card-body product-body" (click)="onCardClick(product.id)">
+        <div class="card-body product-body">
           <div class="d-flex justify-content-between">
             <div>
               <h5 class="card-title">

@@ -110,6 +110,7 @@ export class ProfileComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe(
       () => {
         console.log('Prodotto eliminato con successo');
+        this.loadProductsOnSale();
       },
       (error) => {
         console.error("Errore durante l'eliminazione del prodotto:", error);

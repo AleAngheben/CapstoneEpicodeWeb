@@ -1,10 +1,15 @@
 <div class="container">
-  <div class="row" *ngIf="product">
-    <div class="col-3"><img src="{{ product.productImg }}" alt="" /></div>
-    <div class="col">
-      <span>{{ product.name }}</span>
-      <p>{{ product.description }}</p>
-      <p>{{ product.price }}</p>
+  <div class="row pt-5 my-details" *ngIf="product">
+    <div class="col-5">
+      <img src="{{ product.productImg }}" alt="" class="w-100" />
+    </div>
+    <div class="col-7">
+      <button class="btn rounded-5 text-white tag">{{ product.type }}</button>
+
+      <span class="d-block name">{{ product.name }}</span>
+      <p class="description">{{ product.description }}</p>
+      <p class="mt-5 fs-3 mb-0">Price:</p>
+      <p class="price">{{ product.price }} €</p>
     </div>
   </div>
 </div>
