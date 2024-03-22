@@ -50,4 +50,10 @@ export class ProductService {
   deleteProduct(id: string) {
     return this.http.delete(`${this.apiURL}/products/${id}`);
   }
+
+  getProductsByNameContaining(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      `${this.apiURL}/products/byName?name=${name}`
+    );
+  }
 }

@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   user!: User;
   buyable: boolean = false;
   isAdmin: boolean = false;
+  searchQuery: string = '';
   constructor(
     private HomeService: HomeService,
     private activatedRoute: ActivatedRoute,
@@ -102,5 +103,22 @@ export class HomeComponent implements OnInit {
   }
   onCardClick(id: string) {
     this.router.navigate([`/details/${id}`]);
+  }
+  searchProducts(): void {
+    if (this.searchQuery.trim() === '') {
+      this.getProducts(); // Se la stringa di ricerca è vuota, ottieni tutti i prodotti
+    } else {
+      this.prodSrv.getProductsByNameContaining(this.searchQuery).subscribe(
+        (products: Product[]) => {
+          this.products = products;
+        },
+        (error: any) => {
+          console.error('Error fetching products:', error);
+        }
+      );
+    }
+  }
+  clearSearch() {
+    this.searchQuery = '';
   }
 }
