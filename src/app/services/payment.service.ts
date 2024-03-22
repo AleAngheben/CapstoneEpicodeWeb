@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cart } from '../interfaces/cart';
@@ -13,10 +13,15 @@ export class PaymentService {
 
   constructor(private http: HttpClient) {}
 
-  startPayment(paymentRequest: number): Observable<string> {
-    return this.http.post<string>(
-      `${this.apiURL}/start-payment`,
-      paymentRequest
-    );
+  createCharge(stripeToken: string, amount: number): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.stripeKEY}`,
+    });
+    const body = new FormData();
+    body.append('stripeToken', stripeToken);
+    body.append('amount', amount.toString());
+    return this.http.post('https://api.stripe.com/v1/charges', body, {
+      headers,
+    });
   }
 }

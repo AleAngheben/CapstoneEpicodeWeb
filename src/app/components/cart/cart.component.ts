@@ -17,8 +17,11 @@ export class CartComponent implements OnInit {
   productsOnCart: Item[] | undefined = [];
   user: User | undefined;
   cart: Cart | undefined;
-  cartPrice?: PaymentRequest;
-  stripe: Stripe | undefined;
+  stripeToken!: string;
+  amount!: number;
+  success!: boolean;
+  error!: string;
+
   constructor(
     private cartSrv: CartService,
     private authSrv: AuthService,
@@ -70,10 +73,50 @@ export class CartComponent implements OnInit {
       this.snackBar.yellowSnackbar('Quantità diminuita');
     });
   }
+  onPayWithStripe() {
+    const stripe = Stripe('pk_your_stripe_public_key'); // Sostituisci con la tua chiave pubblica
+    const totalAmount = this.calculateTotalAmount(); // Calcola l'importo totale del carrello
 
-  startPayment(paymentRequest: number): void {
-    this.paymentService.startPayment(paymentRequest).subscribe((url) => {
-      window.location.href = url; // Reindirizza l'utente all'URL di pagamento
-    });
+    stripe
+      .createPaymentRequest({
+        amount: totalAmount * 100, // Converti in centesimi
+        currency: 'eur',
+        paymentMethods: ['card'],
+        button: document.getElementById('stripe-button'),
+      })
+      .then((data) => {
+        // Il pagamento è stato completato con successo
+        this.s.confirmPayment(data.paymentIntent.id).subscribe(
+          (response) => {
+            // Processa la risposta di conferma del pagamento dal backend
+            console.log('Pagamento completato:', response);
+          },
+          (error) => {
+            // Gestisci gli errori del backend
+            console.error('Errore durante la conferma del pagamento:', error);
+          }
+        );
+      })
+      .catch((error) => {
+        // Gestisci gli errori di Stripe.js
+        console.error('Errore Stripe:', error);
+      });
   }
+
+  calculateTotalAmount(): number {
+    // Implementa la logica per calcolare l'importo totale del carrello
+    return 1000; // Esempio (sostituisci con la tua logica)
+  }
+  // onClick() {
+  //   this.paymentService.createCharge(this.stripeToken = , this.amount).subscribe(
+  //     (charge) => {
+  //       this.success = true;
+  //       this.error = "";
+  //     },
+  //     (error) => {
+  //       this.success = false;
+  //       this.error = error.message;
+  //     }
+  //   );
+  // }
 }
