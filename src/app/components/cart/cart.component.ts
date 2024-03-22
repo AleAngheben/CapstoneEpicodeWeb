@@ -28,75 +28,41 @@ export class CartComponent implements OnInit {
 
   //ricava carrello dell user loggato
   loadMyCart(): void {
-    this.cartSrv.getMyCart().subscribe(
-      (products: Cart) => {
-        this.cart = products;
-        this.productsOnCart = products.items;
-      },
-      (error) => {
-        console.error('Error loading cart:', error);
-      }
-    );
+    this.cartSrv.getMyCart().subscribe((products: Cart) => {
+      this.cart = products;
+      this.productsOnCart = products.items;
+    });
   }
 
   //ricava user loggato
   getUserProfile(): void {
-    this.authSrv.getMyProfile().subscribe(
-      (user: User) => {
-        this.user = user;
-        // this.getMyProductsOnSell();
-      },
-      (error) => {
-        console.error('Errore nel recupero del profilo utente:', error);
-      }
-    );
+    this.authSrv.getMyProfile().subscribe((user: User) => {
+      this.user = user;
+      // this.getMyProductsOnSell();
+    });
   }
 
   //al click deleta completamente l'item ( dal carrello )
   removeItemFromCart(itemId: string): void {
-    this.cartSrv.deleteItemFromCart(itemId).subscribe(
-      () => {
-        this.loadMyCart();
-        this.snackBar.yellowSnackbar('Elemento eliminato');
-      },
-      (error) => {
-        console.error(
-          "Errore durante la rimozione dell'elemento dal carrello:",
-          error
-        );
-      }
-    );
+    this.cartSrv.deleteItemFromCart(itemId).subscribe(() => {
+      this.loadMyCart();
+      this.snackBar.yellowSnackbar('Elemento eliminato');
+    });
   }
 
   //aggiunge 1 alla quantità del prodotto incrementato
   increaseItemQuantity(itemId: string): void {
-    this.cartSrv.itemPlusOnCart(itemId).subscribe(
-      () => {
-        this.loadMyCart();
-        this.snackBar.successSnackbar('Quantità aumentata');
-      },
-      (error) => {
-        console.error(
-          "Errore durante l'incremento della quantità dell'elemento nel carrello:",
-          error
-        );
-      }
-    );
+    this.cartSrv.itemPlusOnCart(itemId).subscribe(() => {
+      this.loadMyCart();
+      this.snackBar.successSnackbar('Quantità aumentata');
+    });
   }
 
   //diminuisce di 1 la quantità fino ad eliminarlo completamente dal carrello
   decreaseItemQuantity(productId: string): void {
-    this.cartSrv.itemMinusOnCart(productId).subscribe(
-      () => {
-        this.loadMyCart();
-        this.snackBar.yellowSnackbar('Quantità diminuita');
-      },
-      (error) => {
-        console.error(
-          "Errore durante la diminuzione della quantità dell'elemento nel carrello:",
-          error
-        );
-      }
-    );
+    this.cartSrv.itemMinusOnCart(productId).subscribe(() => {
+      this.loadMyCart();
+      this.snackBar.yellowSnackbar('Quantità diminuita');
+    });
   }
 }

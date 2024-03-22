@@ -75,7 +75,7 @@ export class RegistrationComponent implements OnInit {
       this.snackBar.successSnackbar('Registrazione effettuata');
     } catch (error) {
       console.log(error);
-      alert(error);
+
       this.router.navigate(['/register']);
     }
   }

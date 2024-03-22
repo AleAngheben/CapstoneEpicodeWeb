@@ -58,27 +58,17 @@ export class HomeComponent implements OnInit {
     });
   }
   addToCart(productId: string) {
-    this.cartSrv.addItemToCart(productId).subscribe(
-      (response) => {
-        console.log('Prodotto aggiunto al carrello', response);
-        this.snackBar.successSnackbar('Prodotto aggiunto al carrello');
-      },
-      (error) => {
-        console.error('Errore :', error);
-      }
-    );
+    this.cartSrv.addItemToCart(productId).subscribe((response) => {
+      console.log('Prodotto aggiunto al carrello', response);
+      this.snackBar.successSnackbar('Prodotto aggiunto al carrello');
+    });
   }
   getUserProfile(): void {
-    this.authSrv.getMyProfile().subscribe(
-      (user: User) => {
-        this.user = user;
-        this.isAdminRole();
-        console.log(this.user);
-      },
-      (error) => {
-        console.error('Errore nel recupero del profilo utente:', error);
-      }
-    );
+    this.authSrv.getMyProfile().subscribe((user: User) => {
+      this.user = user;
+      this.isAdminRole();
+      console.log(this.user);
+    });
   }
 
   isBuyable(userId: string, sellerId: string) {
@@ -100,15 +90,10 @@ export class HomeComponent implements OnInit {
     const confirmDelete = confirm(
       'Sei sicuro di voler eliminare questo prodotto?'
     );
-    this.prodSrv.deleteProduct(id).subscribe(
-      () => {
-        this.getProducts();
-        this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
-      },
-      (error) => {
-        console.error("Errore durante l'eliminazione del prodotto:", error);
-      }
-    );
+    this.prodSrv.deleteProduct(id).subscribe(() => {
+      this.getProducts();
+      this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
+    });
   }
   isAdminRole() {
     if (this.user && this.user.role && this.user.role === 'ADMIN') {

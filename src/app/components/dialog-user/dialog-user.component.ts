@@ -52,17 +52,12 @@ export class DialogUserComponent implements OnInit {
   }
 
   getUserProfile(): void {
-    this.authSrv.getMyProfile().subscribe(
-      (user: User) => {
-        this.user = user;
-        if (user && user.name) {
-          this.initForm();
-        }
-      },
-      (error) => {
-        console.error('Errore nel recupero del profilo utente:', error);
+    this.authSrv.getMyProfile().subscribe((user: User) => {
+      this.user = user;
+      if (user && user.name) {
+        this.initForm();
       }
-    );
+    });
   }
 
   modifyUser(form: NgForm) {

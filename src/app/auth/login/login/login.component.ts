@@ -26,23 +26,11 @@ export class LoginComponent implements OnInit {
       email: form.value.email,
       password: form.value.password,
     };
-    try {
-      this.authSrv.login(data).subscribe(
-        () => {
-          this.router.navigate(['/home']);
-          this.snackBar.successSnackbar('Login effettuato');
-        },
-        (error) => {
-          console.log(error);
-          this.router.navigate(['/login']);
-          this.snackBar.errorSnackbar('Login errato!');
-        }
-      );
-    } catch (error) {
-      console.log(error);
-      this.router.navigate(['/login']);
-      this.snackBar.errorSnackbar('Login errato!');
-    }
+
+    this.authSrv.login(data).subscribe(() => {
+      this.router.navigate(['/home']);
+      this.snackBar.successSnackbar('Login effettuato');
+    });
   }
 
   togglePasswordVisibility(): void {

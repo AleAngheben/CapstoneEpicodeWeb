@@ -79,23 +79,18 @@ export class ProfileComponent implements OnInit {
     if (file) {
       const formData = new FormData();
       formData.append('avatar', file);
-      this.authSrv.uploadAvatar(formData).subscribe(
-        (response) => {
-          console.log('Avatar uploaded successfully:', response);
-          if (response && response.avatarUrl) {
-            if (this.user) {
-              this.avatar = response.avatarUrl;
-              this.imageSwitch = true;
+      this.authSrv.uploadAvatar(formData).subscribe((response) => {
+        console.log('Avatar uploaded successfully:', response);
+        if (response && response.avatarUrl) {
+          if (this.user) {
+            this.avatar = response.avatarUrl;
+            this.imageSwitch = true;
 
-              console.log('la response', response);
-            }
+            console.log('la response', response);
           }
-          this.getUserProfile();
-        },
-        (error) => {
-          console.error('Failed to upload avatar:', error);
         }
-      );
+        this.getUserProfile();
+      });
     }
   }
 
@@ -110,15 +105,10 @@ export class ProfileComponent implements OnInit {
     const confirmDelete = confirm(
       'Sei sicuro di voler eliminare questo prodotto?'
     );
-    this.productService.deleteProduct(id).subscribe(
-      () => {
-        this.loadProductsOnSale();
-        this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
-      },
-      (error) => {
-        console.error("Errore durante l'eliminazione del prodotto:", error);
-      }
-    );
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.loadProductsOnSale();
+      this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
+    });
   }
   openBackoffice() {
     const dialogRef = this.dialog.open(BackofficeComponent);

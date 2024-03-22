@@ -51,40 +51,29 @@ export class ProductOfficeComponent implements OnInit {
   getProductDetails(): void {
     const productId = this.productId;
     if (productId) {
-      this.prodSrv.getProductById(productId).subscribe(
-        (data) => {
-          this.product = data;
-          if (this.product) {
-            this.productDataForm.patchValue({
-              name: this.product.name,
-              description: this.product.description,
-              price: this.product.price,
-              type: this.product.type,
-              productImg: this.product.productImg,
-            });
-          }
-        },
-        (error) => {
-          console.error(
-            'Errore nel recuperare i dettagli del prodotto:',
-            error
-          );
+      this.prodSrv.getProductById(productId).subscribe((data) => {
+        this.product = data;
+        if (this.product) {
+          this.productDataForm.patchValue({
+            name: this.product.name,
+            description: this.product.description,
+            price: this.product.price,
+            type: this.product.type,
+            productImg: this.product.productImg,
+          });
         }
-      );
+      });
     }
   }
   updateProduct() {
     if (this.productDataForm.valid && this.productId) {
       const modifiedProduct = this.productDataForm.value;
-      this.prodSrv.updateProduct(this.productId, modifiedProduct).subscribe(
-        () => {
+      this.prodSrv
+        .updateProduct(this.productId, modifiedProduct)
+        .subscribe(() => {
           this.dialog.closeAll();
           this.snackBar.successSnackbar('Prodotto aggiornato con successo');
-        },
-        (error) => {
-          console.error("Errore durante l'aggiornamento del prodotto:", error);
-        }
-      );
+        });
     }
   }
 }

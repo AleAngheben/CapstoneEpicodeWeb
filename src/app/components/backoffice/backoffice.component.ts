@@ -46,29 +46,19 @@ export class BackofficeComponent implements OnInit {
   }
 
   createProduct() {
-    this.authSrv.getMyProfile().subscribe(
-      (user: User) => {
-        const userId = user.id;
-        const productDataMy = { ...this.productData, sellerId: userId };
-        this.prodSrv.addProduct(productDataMy).subscribe(
-          (response) => {
-            console.log('Prodotto creato con successo');
-            if (response.id) {
-              this.uploadAvatar(this.file, response.id);
+    this.authSrv.getMyProfile().subscribe((user: User) => {
+      const userId = user.id;
+      const productDataMy = { ...this.productData, sellerId: userId };
+      this.prodSrv.addProduct(productDataMy).subscribe((response) => {
+        console.log('Prodotto creato con successo');
+        if (response.id) {
+          this.uploadAvatar(this.file, response.id);
 
-              this.dialog.closeAll();
-              this.snackBar.successSnackbar('Prodotto creato con successo');
-            }
-          },
-          (error) => {
-            console.log('Errore durante la creazione del prodotto', error);
-          }
-        );
-      },
-      (error) => {
-        console.log('Errore nel recupero del profilo utente', error);
-      }
-    );
+          this.dialog.closeAll();
+          this.snackBar.successSnackbar('Prodotto creato con successo');
+        }
+      });
+    });
   }
 
   uploadAvatar(file: File, id: string) {
@@ -80,7 +70,6 @@ export class BackofficeComponent implements OnInit {
       next: (responseUrl: any) => {
         this.productData.productImg = responseUrl;
       },
-      error: (err) => console.log('Error uploading avatar:', err),
     });
   }
 }

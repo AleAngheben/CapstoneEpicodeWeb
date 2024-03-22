@@ -4,4 +4,6 @@ app-navbar {
 }
 .router {
   margin-top: 8rem;
+  height: calc(100vh - 5rem);
+  overflow: auto;
 }

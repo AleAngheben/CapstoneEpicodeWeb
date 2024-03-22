@@ -28,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ErrorInterceptor } from './auth/error.interceptor';
 const routes: Route[] = [
   {
     path: 'home',
@@ -109,6 +110,11 @@ const routes: Route[] = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     },
   ],
