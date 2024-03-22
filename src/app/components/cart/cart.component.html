@@ -60,6 +60,11 @@
       <div>
         <h3>TOTAL AMOUNT: {{ cart?.cartPrice | number : "1.2-2" }}</h3>
       </div>
+      <div *ngIf="cart?.cartPrice">
+        <button class="btn btn-primary" (click)="startPayment(cart!.cartPrice)">
+          checkout
+        </button>
+      </div>
     </div>
   </div>
 </div>

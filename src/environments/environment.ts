@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   apiURL: 'http://localhost:3001',
+  stripePublicKey:
+    'pk_test_51Ox6GnRpbzm5ZgIVpPxk0ez1ZntgAboDIxCAu6M5iL0kyriGHRZIqbhCjhgZoj4saqoQ8PytDFQE8JrA7dOwREK000Lcghl6Jz',
 };
 
 /*

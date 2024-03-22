@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Cart } from 'src/app/interfaces/cart';
 import { Item } from 'src/app/interfaces/item';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { PaymentService } from 'src/app/services/payment.service';
+import { Stripe } from '@stripe/stripe-js';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -15,10 +17,13 @@ export class CartComponent implements OnInit {
   productsOnCart: Item[] | undefined = [];
   user: User | undefined;
   cart: Cart | undefined;
+  cartPrice?: PaymentRequest;
+  stripe: Stripe | undefined;
   constructor(
     private cartSrv: CartService,
     private authSrv: AuthService,
-    private snackBar: SnackBarComponent
+    private snackBar: SnackBarComponent,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +68,12 @@ export class CartComponent implements OnInit {
     this.cartSrv.itemMinusOnCart(productId).subscribe(() => {
       this.loadMyCart();
       this.snackBar.yellowSnackbar('Quantità diminuita');
+    });
+  }
+
+  startPayment(paymentRequest: number): void {
+    this.paymentService.startPayment(paymentRequest).subscribe((url) => {
+      window.location.href = url; // Reindirizza l'utente all'URL di pagamento
     });
   }
 }
