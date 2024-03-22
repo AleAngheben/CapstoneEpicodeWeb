@@ -120,5 +120,6 @@ export class HomeComponent implements OnInit {
   }
   clearSearch() {
     this.searchQuery = '';
+    this.getProducts();
   }
 }
