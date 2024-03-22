@@ -1,13 +1,15 @@
 <div class="container">
   <div class="border-mine d-flex justify-content-center">
-    <div class="row p-4 border-mine2 bg-white m-0">
+    <div class="row p-4 border-mine2 bg-white m-0 gy-5 gy-lg-0">
       <div
-        class="col-2 position-relative"
+        class="col-6 offset-3 col-lg-3 offset-lg-0 position-relative"
         *ngIf="user && user.avatarUrl"
         id="profile-img-container"
       >
         <div class="d-flex flex-column align-items-center">
-          <div class="w-100 rounded-5 object-fit-cover">
+          <div
+            class="w-100 rounded-5 object-fit-cover d-flex justify-content-center"
+          >
             <i
               class="bi bi-pencil-square position-absolute fs-5 end-0 pointer"
               (click)="onClickUploadButton()"
@@ -19,14 +21,15 @@
               class="w-100 rounded-50"
               id="profile-img"
             />
-            <ng-template #loadingTemplate>CALMO</ng-template>
+            <ng-template #loadingTemplate class="w-100">
+              <img
+                src="../../../assets/imgs/wait.png"
+                alt=""
+                class="w-100 rounded-50"
+                id="profile-img"
+              />
+            </ng-template>
           </div>
-          <!-- <button
-            class="btn my-btn ms-4 mt-2 w-100"
-            (click)="onClickUploadButton()"
-          >
-            Carica Avatar
-          </button> -->
         </div>
         <input
           type="file"
@@ -35,7 +38,7 @@
           (change)="onFileSelected($event)"
         />
       </div>
-      <div class="col-9 offset-1 position-relative">
+      <div class="col-12 col-lg-8 offset-lg-1 position-relative">
         <i
           class="bi bi-pencil-square position-absolute fs-5 end-0"
           (click)="openDialog()"
@@ -79,7 +82,7 @@
               {{ product.name }}
             </h5>
           </div>
-          <div>O</div>
+          <div></div>
         </div>
         <p class="card-text">
           {{ product.sellerName }} {{ product.sellerSurname }}
@@ -96,6 +99,18 @@
     </div>
   </div>
   <ng-template #noProdTemplate>
-    <h1 class="mt-5 text-center">Non hai nessun prodotto in vendita</h1>
+    <h1 class="mt-5 text-center">Non hai nessun prodotto in vendita ...</h1>
+
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <button class="hero-btn btn rounded-5 p-2 px-4">
+        <a [routerLink]="['/home']">VAI ALLA HOME</a>
+      </button>
+      <button
+        class="hero-btn btn rounded-5 p-2 px-4"
+        (click)="openBackoffice()"
+      >
+        AGGIUNGI UN PRODOTTO
+      </button>
+    </div>
   </ng-template>
 </div>

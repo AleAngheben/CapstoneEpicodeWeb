@@ -102,7 +102,6 @@ export class HomeComponent implements OnInit {
     );
     this.prodSrv.deleteProduct(id).subscribe(
       () => {
-        console.log('Prodotto eliminato con successo');
         this.getProducts();
         this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
       },

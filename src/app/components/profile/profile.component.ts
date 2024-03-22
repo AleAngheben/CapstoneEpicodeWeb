@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogUserComponent } from '../dialog-user/dialog-user.component';
 import { ProductOfficeComponent } from '../product-office/product-office.component';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { BackofficeComponent } from '../backoffice/backoffice.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -118,5 +119,13 @@ export class ProfileComponent implements OnInit {
         console.error("Errore durante l'eliminazione del prodotto:", error);
       }
     );
+  }
+  openBackoffice() {
+    const dialogRef = this.dialog.open(BackofficeComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getUserProfile();
+      this.loadProductsOnSale();
+    });
   }
 }
