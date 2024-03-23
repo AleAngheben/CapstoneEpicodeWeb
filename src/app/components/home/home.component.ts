@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 //import { ProductResponse } from 'src/app/interfaces/new-product';
 import { HomeService } from 'src/app/services/home.service';
 import { Observable } from 'rxjs/internal/Observable';
@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   // selectedCategory: string = '';
   name: string = '';
   type: string = '';
+  showBackToTopBtn: boolean = false;
   productCategories: string[] = [
     'VIDEOGAMES',
     'BOOKS',
@@ -143,5 +144,15 @@ export class HomeComponent implements OnInit {
       this.type = '';
       this.searchProductsOnChange();
     }
+  }
+
+  //bottone che porta incima alla pagina
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showBackToTopBtn = window.scrollY > 200;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

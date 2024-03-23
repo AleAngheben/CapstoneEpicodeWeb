@@ -41,4 +41,15 @@ nav {
 .nav-link:hover {
   color: #8eccb0;
 }
-/* Assicura che il menu collapse sia in primo piano */
+
+.fs-icon {
+  font-size: 30px;
+  margin-top: 3px;
+}
+.profile-icon:active {
+  border: none;
+}
+#hamburger:focus-visible {
+  border: none;
+  outline: none;
+}
