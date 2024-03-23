@@ -47,8 +47,6 @@
 
 .my-hero {
   background-color: #d0d1ff;
-  height: 300px;
-  border-radius: 20px;
 }
 .hero-title {
   font-size: 5rem;
@@ -83,4 +81,20 @@
 }
 .pointer {
   cursor: pointer;
+}
+
+/* Stile per gli elementi attivi */
+.active {
+  /* Colore del testo rosso */
+  /* Aggiungi altri stili desiderati per gli elementi attivi */
+
+  border-bottom: 3px solid;
+  font-weight: bold;
+}
+#search:focus-visible {
+  outline: none;
+}
+.p-mine {
+  padding-right: 12px;
+  padding-left: 12px;
 }

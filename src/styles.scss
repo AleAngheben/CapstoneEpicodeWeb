@@ -55,31 +55,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--colore-main);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: var(--colore-trasparent);
-}
-
-::-moz-scrollbar {
-  width: 5px;
-}
-
-::-moz-scrollbar-thumb {
-  background-color: var(--colore-main);
-  border-radius: 10px;
-}
-
-::-moz-scrollbar-track {
-  background-color: var(--colore-trasparent);
-}
 .success-snackbar {
   background-color: green;
   color: white;
@@ -95,4 +70,29 @@ body {
 
 .mat-button-wrapper {
   color: white;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #603eab;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #d0d1ff;
+}
+
+::-moz-scrollbar {
+  width: 5px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: var(--colore-main);
+  border-radius: 10px;
+}
+
+::-moz-scrollbar-track {
+  background-color: var(--colore-trasparent);
 }

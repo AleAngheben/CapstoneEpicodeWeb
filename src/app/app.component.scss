@@ -3,7 +3,8 @@ app-navbar {
   margin-bottom: 5rem;
 }
 .router {
-  margin-top: 8rem;
-  height: calc(100vh - 5rem);
   overflow: auto;
+  margin-top: 5rem;
+  padding-inline: 0;
+  overflow-x: hidden;
 }

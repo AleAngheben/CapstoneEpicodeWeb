@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product, NewProduct, ProductOnSell } from '../interfaces/new-product';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 @Injectable({
@@ -9,6 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ProductService {
   private apiURL = environment.apiURL;
+  private searchQuerySubject = new BehaviorSubject<string>('');
   constructor(private http: HttpClient) {}
 
   addProduct(productData: Partial<NewProduct>) {
@@ -55,5 +56,20 @@ export class ProductService {
     return this.http.get<Product[]>(
       `${this.apiURL}/products/byName?name=${name}`
     );
+  }
+
+  get searchQuery$(): Observable<string> {
+    return this.searchQuerySubject.asObservable();
+  }
+
+  setSearchQuery(query: string) {
+    this.searchQuerySubject.next(query);
+  }
+
+  searchProducts(name: string, type: string): Observable<Product[]> {
+    const params = { name, type };
+    return this.http.get<Product[]>(`${this.apiURL}/products/search`, {
+      params,
+    });
   }
 }

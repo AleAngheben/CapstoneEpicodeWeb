@@ -13,6 +13,7 @@ import { BackofficeComponent } from '../backoffice/backoffice.component';
 import { ProductService } from 'src/app/services/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -29,7 +30,22 @@ export class HomeComponent implements OnInit {
   user!: User;
   buyable: boolean = false;
   isAdmin: boolean = false;
-  searchQuery: string = '';
+  // searchQuery: string = '';
+  // selectedCategory: string = '';
+  name: string = '';
+  type: string = '';
+  productCategories: string[] = [
+    'VIDEOGAMES',
+    'BOOKS',
+    'ELECTRONICS',
+    'CLOTHING',
+    'SPORT',
+    'TOYS',
+    'MUSIC',
+    'FURNITURE',
+    'PET_SUPPLIES',
+    'OTHER',
+  ];
   constructor(
     private HomeService: HomeService,
     private activatedRoute: ActivatedRoute,
@@ -104,22 +120,28 @@ export class HomeComponent implements OnInit {
   onCardClick(id: string) {
     this.router.navigate([`/details/${id}`]);
   }
-  searchProducts(): void {
-    if (this.searchQuery.trim() === '') {
-      this.getProducts(); // Se la stringa di ricerca è vuota, ottieni tutti i prodotti
-    } else {
-      this.prodSrv.getProductsByNameContaining(this.searchQuery).subscribe(
-        (products: Product[]) => {
-          this.products = products;
-        },
-        (error: any) => {
-          console.error('Error fetching products:', error);
-        }
-      );
-    }
-  }
+
   clearSearch() {
-    this.searchQuery = '';
-    this.getProducts();
+    this.name = '';
+    this.searchProductsOnChange();
+  }
+
+  searchProductsOnChange(): void {
+    this.prodSrv
+      .searchProducts(this.name, this.type)
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((products) => {
+        this.products = products;
+      });
+  }
+
+  setType(selectedType: string): void {
+    if (selectedType !== 'all') {
+      this.type = selectedType.toUpperCase();
+      this.searchProductsOnChange();
+    } else {
+      this.type = '';
+      this.searchProductsOnChange();
+    }
   }
 }

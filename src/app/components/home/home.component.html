@@ -1,26 +1,111 @@
-<div class="w-100 mb-5 my-hero">
-  <p class="text-center pt-5 hero-title">VENDI - COMPRA - RISPARMIA !</p>
-  <div class="position-relative col-4 offset-4">
-    <input
-      type="text"
-      [(ngModel)]="searchQuery"
-      placeholder="Inserisci il nome del prodotto"
-      (input)="searchProducts()"
-      id="search"
-      class="border-0 rounded-3 p-2 w-100"
-    />
-
-    <i
-      *ngIf="searchQuery"
-      class="bi bi-x-lg position-absolute end-0 top-50 translate-middle-y pe-3 pointer fs-5"
-      (click)="clearSearch()"
-    ></i>
-    <i
-      *ngIf="!searchQuery"
-      class="bi bi-search position-absolute end-0 top-50 translate-middle-y pe-3 fs-5"
-    ></i>
+<div class="w-100 my-hero py-4 p-mine">
+  <!-- <p class="text-center pt-5 hero-title">VENDI - COMPRA - RISPARMIA !</p> -->
+  <div
+    class="d-flex justify-content-between align-items-center flex-column-reverse flex-sm-row gap-3"
+  >
+    <div class="d-none d-lg-block">
+      <div class="d-block mb-2 d-xl-inline">
+        <span
+          class="fs-5 ms-3 choose pointer my-color"
+          [ngClass]="{ active: type === '' }"
+          (click)="setType('all')"
+          >All</span
+        >
+        <span
+          class="ms-3 fs-5 choose pointer my-color"
+          [ngClass]="{ active: type === 'CLOTHING' }"
+          (click)="setType('clothing')"
+          >Clothing</span
+        >
+        <span
+          class="ms-3 fs-5 choose pointer my-color"
+          [ngClass]="{ active: type === 'SPORT' }"
+          (click)="setType('sport')"
+          >Sport</span
+        >
+        <span
+          class="ms-3 fs-5 choose pointer my-color"
+          [ngClass]="{ active: type === 'VIDEOGAMES' }"
+          (click)="setType('videogames')"
+          >Videogames</span
+        >
+        <span
+          class="ms-3 fs-5 choose pointer my-color"
+          [ngClass]="{ active: type === 'TOYS' }"
+          (click)="setType('toys')"
+          >Toys</span
+        >
+      </div>
+      <span
+        class="ms-3 fs-5 choose pointer my-color"
+        [ngClass]="{ active: type === 'MUSIC' }"
+        (click)="setType('music')"
+        >Music</span
+      >
+      <span
+        class="ms-3 fs-5 choose pointer my-color"
+        [ngClass]="{ active: type === 'FURNITURE' }"
+        (click)="setType('furniture')"
+        >Furniture</span
+      >
+      <span
+        class="ms-3 fs-5 choose pointer my-color"
+        [ngClass]="{ active: type === 'PET_SUPPLIES' }"
+        (click)="setType('PET_SUPPLIES')"
+        >Pets</span
+      >
+      <span
+        class="ms-3 fs-5 choose pointer my-color"
+        [ngClass]="{ active: type === 'ELECTRONICS' }"
+        (click)="setType('electronics')"
+        >Electronics</span
+      >
+      <span
+        class="ms-3 fs-5 choose pointer my-color"
+        [ngClass]="{ active: type === 'BOOKS' }"
+        (click)="setType('books')"
+        >Books</span
+      >
+      <span
+        class="ms-3 fs-5 choose pointer my-color"
+        [ngClass]="{ active: type === 'OTHER' }"
+        (click)="setType('other')"
+        >Other</span
+      >
+    </div>
+    <div class="d-lg-none">
+      <select
+        class="form-select border-0 rounded-3 p-2 pe-5 w-100"
+        [(ngModel)]="type"
+        (change)="searchProductsOnChange()"
+      >
+        <option value="" selected>All categories</option>
+        <option *ngFor="let category of productCategories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+    <div class="position-relative">
+      <input
+        type="text"
+        [(ngModel)]="name"
+        placeholder="Nome del prodotto"
+        (input)="searchProductsOnChange()"
+        id="search"
+        class="border-0 rounded-3 p-2 w-100 pe-5 me-5"
+      /><i
+        *ngIf="name"
+        class="bi bi-x-lg position-absolute end-0 top-50 translate-middle-y pe-3 pointer fs-5"
+        (click)="clearSearch()"
+      ></i>
+      <i
+        *ngIf="!name"
+        class="bi bi-search position-absolute end-0 top-50 translate-middle-y pe-3 fs-5"
+      ></i>
+    </div>
   </div>
-  <div class="d-flex justify-content-center gap-5 pt-3">
+
+  <!-- <div class="d-flex justify-content-center gap-5 pt-3">
     <button class="hero-btn btn rounded-5 p-2 px-4">
       <a [routerLink]="['/cart']">CARRELLO</a>
     </button>
@@ -30,7 +115,7 @@
     <button class="hero-btn btn rounded-5 p-2 px-4" (click)="openBackoffice()">
       VENDI
     </button>
-  </div>
+  </div> -->
 </div>
 <div class="container mt-5">
   <div class="row justify-content-center gap-5 gap-lg-2">
@@ -62,7 +147,12 @@
               </h5>
             </div>
             <div>
-              <span><i class="bi bi-heart"></i></span>
+              <span
+                ><i
+                  class="bi bi-info-circle"
+                  (click)="onCardClick(product.id)"
+                ></i
+              ></span>
             </div>
           </div>
           <p class="card-text">
@@ -78,9 +168,6 @@
           >
             Add to Cart
           </button>
-          <!-- <button (click)="onCardClick(product.id)" class="btn btn-primary">
-            INFO
-          </button> -->
         </div>
       </div>
     </ng-container>
