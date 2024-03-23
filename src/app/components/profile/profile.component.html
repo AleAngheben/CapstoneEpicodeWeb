@@ -47,7 +47,7 @@
         <h4>{{ user?.username }}</h4>
         <p class="pt-5 fs-4">EMAIL: {{ user?.email }}</p>
         <p class="fs-4">
-          PRODOTTI IN VENDITA:
+          PRODUCTS FOR SALE:
           <span class="fw-bolder">{{ products?.length }}</span>
         </p>
       </div>
@@ -93,23 +93,23 @@
           class="btn bg-mine2 text-white fw-bolder w-100"
           (click)="editProduct(product.id)"
         >
-          Modifica
+          Edit
         </button>
       </div>
     </div>
   </div>
   <ng-template #noProdTemplate>
-    <h1 class="mt-5 text-center">Non hai nessun prodotto in vendita ...</h1>
+    <h1 class="mt-5 text-center">You don't have any products for sale ...</h1>
 
     <div class="d-flex justify-content-center gap-3 mt-3">
       <button class="hero-btn btn rounded-5 p-2 px-4">
-        <a [routerLink]="['/home']">VAI ALLA HOME</a>
+        <a [routerLink]="['/home']">HOME PAGE</a>
       </button>
       <button
         class="hero-btn btn rounded-5 p-2 px-4"
         (click)="openBackoffice()"
       >
-        AGGIUNGI UN PRODOTTO
+        ADD A PRODUCT
       </button>
     </div>
   </ng-template>

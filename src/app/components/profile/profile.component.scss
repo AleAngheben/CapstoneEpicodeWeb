@@ -58,17 +58,6 @@
   aspect-ratio: 1;
 }
 
-.my-btn {
-  background-color: #603eab;
-  color: white;
-  border-radius: 40px;
-  border: 2px solid transparent;
-}
-.my-btn:hover {
-  background-color: white;
-  color: #603eab;
-  border: 2px solid #603eab;
-}
 .hero-btn {
   background-color: white;
   border-color: #603eab;
@@ -89,38 +78,6 @@
 .hero-btn:hover > a {
   color: white;
 }
-// .main-card {
-//   border-image: linear-gradient(
-//     90deg,
-//     hsla(154, 100%, 76%, 1) 0%,
-//     hsla(234, 100%, 83%, 1) 50%,
-//     hsla(288, 100%, 81%, 1) 100%
-//   );
-
-// background: linear-gradient(
-//   90deg,
-//   hsla(154, 100%, 76%, 1) 0%,
-//   hsla(234, 100%, 83%, 1) 50%,
-//   hsla(288, 100%, 81%, 1) 100%
-// );
-
-// background: -moz-linear-gradient(
-//   90deg,
-//   hsla(154, 100%, 76%, 1) 0%,
-//   hsla(234, 100%, 83%, 1) 50%,
-//   hsla(288, 100%, 81%, 1) 100%
-// );
-
-// background: -webkit-linear-gradient(
-//   90deg,
-//   hsla(154, 100%, 76%, 1) 0%,
-//   hsla(234, 100%, 83%, 1) 50%,
-//   hsla(288, 100%, 81%, 1) 100%
-// );
-// }
-// .row {
-//   filter: blur(0px);
-// }
 
 .border-mine {
   background: linear-gradient(

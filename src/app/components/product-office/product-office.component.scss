@@ -1,0 +1,23 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+.hero-btn {
+  background-color: white;
+  border-color: #603eab;
+  color: #603eab;
+  font-weight: bold;
+}
+.hero-btn:hover {
+  background-color: #603eab;
+  border-color: transparent;
+  color: white;
+  font-weight: bold;
+}
+.hero-btn > a {
+  text-decoration: none;
+  color: #603eab;
+}
+
+.hero-btn:hover > a {
+  color: white;
+}

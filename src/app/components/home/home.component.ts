@@ -97,7 +97,9 @@ export class HomeComponent implements OnInit {
     }
   }
   openBackoffice() {
-    const dialogRef = this.dialog.open(BackofficeComponent);
+    const dialogRef = this.dialog.open(BackofficeComponent, {
+      panelClass: 'custom-backoffice',
+    });
 
     dialogRef.afterClosed().subscribe(() => {
       this.getUserProfile();

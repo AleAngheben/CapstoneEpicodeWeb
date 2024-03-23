@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthData } from 'src/app/auth/auth-data';
 import { AuthService } from 'src/app/auth/auth.service';
-
+import { HomeService } from 'src/app/services/home.service';
+import { BackofficeComponent } from '../backoffice/backoffice.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +12,11 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class NavbarComponent implements OnInit {
   user!: AuthData | null;
 
-  constructor(private authSrv: AuthService) {}
+  constructor(
+    private authSrv: AuthService,
+    private dialog: MatDialog,
+    private HomeService: HomeService
+  ) {}
 
   ngOnInit(): void {
     this.getUser();
@@ -26,4 +32,17 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authSrv.logout();
   }
+  openBackoffice() {
+    const dialogRef = this.dialog.open(BackofficeComponent);
+
+    // dialogRef.afterClosed().subscribe(() => {
+    //   this.getUserProfile();
+    //   this.getProducts();
+    // });
+  }
+  // getProducts() {
+  //   this.HomeService.getProducts().subscribe((response: any) => {
+  //     this.products = response.content;
+  //   });
+  // }
 }

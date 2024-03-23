@@ -96,3 +96,9 @@ body {
 ::-moz-scrollbar-track {
   background-color: var(--colore-trasparent);
 }
+
+.custom-backoffice {
+  max-height: calc(100vh - 5rem);
+  margin-top: 20rem;
+  bottom: 6rem;
+}

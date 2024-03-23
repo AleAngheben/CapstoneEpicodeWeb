@@ -23,7 +23,7 @@ nav {
     color: white;
   }
   .navbar-collapse {
-    z-index: 1001;
+    z-index: 200;
     background-color: #603eab;
     padding-bottom: 1rem;
     padding-left: 1rem;
@@ -52,4 +52,8 @@ nav {
 #hamburger:focus-visible {
   border: none;
   outline: none;
+}
+.fs-add {
+  font-size: 25px;
+  margin-top: 3px;
 }

@@ -1,9 +1,17 @@
+.dialog-content {
+  z-index: 999;
+}
 input,
 textarea,
 select {
   margin-bottom: 2rem;
 }
 
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
 .hero-btn {
   background-color: white;
   border-color: #603eab;
