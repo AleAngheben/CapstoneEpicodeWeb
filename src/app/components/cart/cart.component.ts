@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Cart } from 'src/app/interfaces/cart';
 import { Item } from 'src/app/interfaces/item';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
