@@ -12,5 +12,55 @@ a {
   color: white;
 }
 .bg-sum {
-  background-color: #aa95bf;
+  background-color: #603eab;
+  color: white;
+}
+.bg-items {
+  background-color: #d0d1ff;
+}
+#cart-img {
+  width: 150px;
+  height: 150px;
+}
+// @media screen and (min-width: 1200px) {
+//   #cart-img {
+//     width: 200px;
+//     height: 200px;
+//   }
+// }
+@media screen and (min-width: 768px) {
+  #cart-img {
+    width: 150px;
+    height: 150px;
+  }
+}
+@media screen and (max-width: 767px) {
+  #cart-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+@media screen and (max-width: 767px) {
+  #cart-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+@media screen and (max-width: 455px) {
+  #cart-img {
+    width: 60px;
+    height: 60px;
+  }
+  .it-name {
+    font-size: 20px;
+  }
+  .it-name-two {
+    font-size: 12px;
+  }
+  .it-price {
+    font-size: 20px;
+  }
+}
+.delete:hover {
+  color: red;
 }
