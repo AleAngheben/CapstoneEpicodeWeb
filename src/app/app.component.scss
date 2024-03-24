@@ -4,7 +4,7 @@ app-navbar {
 }
 .router {
   overflow: auto;
-
+  min-height: calc(100vh - 5rem);
   padding-inline: 0;
   overflow-x: hidden;
 }
