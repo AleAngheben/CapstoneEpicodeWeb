@@ -68,7 +68,9 @@
         <h3>TOTAL AMOUNT: {{ cart?.cartPrice | number : "1.2-2" }} €</h3>
       </div>
       <div>
-        <button class="btn btn-success mb-4">Checkout</button>
+        <button class="btn btn-success mb-4" [routerLink]="['/checkout']">
+          Checkout
+        </button>
       </div>
     </div>
   </div>

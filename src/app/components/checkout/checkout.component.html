@@ -1,0 +1,77 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-5 offset-1 bg-body-tertiary">
+      <h1 class="mb-5">Dati del carrello</h1>
+      <h3 class="mb-5">
+        <span class="d-block">Prezzo del carrello :</span>
+        {{ cart?.cartPrice }} €
+      </h3>
+      <div
+        *ngFor="let item of productsOnCart"
+        class="d-flex justify-content-between"
+      >
+        <div>
+          <h4>{{ item.products.name }} &lpar;{{ item.quantity }}&rpar;</h4>
+        </div>
+        <div>
+          <h4>{{ item.products.price }} €</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-5 bg-info">
+      <div>
+        <h4 class="text-center">I tuoi dati</h4>
+        <div *ngIf="user">
+          <span>Email </span><span> {{ user.email }}</span>
+        </div>
+      </div>
+      <div>
+        <h4>Payment method</h4>
+        <button>Card</button>
+        <button>Cash on delivery</button>
+      </div>
+      <div>
+        <h5>Card information</h5>
+        <form>
+          <label for="card_number">Numero della carta:</label><br />
+          <input
+            type="text"
+            id="card_number"
+            name="card_number"
+            class="form-control"
+            pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}"
+            placeholder="Inserisci il numero della tua carta di credito"
+            required
+          /><br />
+
+          <label for="expiration_date">Data di scadenza (MM/AA):</label><br />
+          <input
+            type="text"
+            id="expiration_date"
+            name="expiration_date"
+            placeholder="MM/AA"
+            pattern="\d{2}/\d{2}"
+            class="form-control"
+            title="Inserisci la data di scadenza nel formato MM/AA"
+            required
+          /><br />
+
+          <label for="cvv">CVV:</label><br />
+          <input
+            type="text"
+            id="cvv"
+            name="cvv"
+            class="form-control"
+            placeholder="Inserisci il codice di sicurezza CVV"
+            maxlength="3"
+            pattern="\d{3}"
+            title="Inserisci un codice CVV valido"
+            required
+          /><br />
+
+          <input type="submit" value="Conferma pagamento" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

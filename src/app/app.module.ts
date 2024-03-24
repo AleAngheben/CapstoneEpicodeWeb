@@ -29,6 +29,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ErrorInterceptor } from './auth/error.interceptor';
+
+import { SuccesscheckoutComponent } from './components/successcheckout/successcheckout.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 const routes: Route[] = [
   {
     path: 'home',
@@ -56,6 +59,16 @@ const routes: Route[] = [
   {
     path: 'postingProduct',
     component: BackofficeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'successpayment',
+    component: SuccesscheckoutComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -90,6 +103,8 @@ const routes: Route[] = [
     ProductOfficeComponent,
     ProductDetailsComponent,
     SnackBarComponent,
+    CheckoutComponent,
+    SuccesscheckoutComponent,
   ],
   imports: [
     BrowserModule,
