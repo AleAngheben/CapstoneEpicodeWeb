@@ -104,7 +104,7 @@
     </div>
   </div>
 </div>
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="products.length > 0; else noProducts">
   <div class="row justify-content-center gap-5 gap-lg-2">
     <ng-container *ngFor="let product of products">
       <div
@@ -170,3 +170,15 @@
     <i class="bi bi-arrow-up-circle fs-3"></i>
   </button>
 </div>
+<ng-template #noProducts>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col">
+        <h1 class="text-center">
+          Non ci sono prodotti appartenenti alla categoria
+          {{ type.toLocaleLowerCase() }} !
+        </h1>
+      </div>
+    </div>
+  </div>
+</ng-template>
