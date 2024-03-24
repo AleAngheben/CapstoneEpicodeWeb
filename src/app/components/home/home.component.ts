@@ -151,7 +151,7 @@ export class HomeComponent implements OnInit {
   //bottone che porta incima alla pagina
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.showBackToTopBtn = window.scrollY > 200;
+    this.showBackToTopBtn = window.scrollY > 170;
   }
 
   scrollToTop() {
