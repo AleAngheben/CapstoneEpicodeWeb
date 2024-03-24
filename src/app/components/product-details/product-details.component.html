@@ -1,9 +1,9 @@
 <div class="container mt-5">
-  <div class="row pt-5 my-details" *ngIf="product">
-    <div class="col-5">
+  <div class="row pt-5 my-details gap-5 gap-lg-0" *ngIf="product">
+    <div class="col-8 offset-2 col-lg-5 offset-lg-0">
       <img src="{{ product.productImg }}" alt="" class="w-100" />
     </div>
-    <div class="col-7">
+    <div class="col-12 col-lg-7">
       <button class="btn rounded-5 text-white tag">{{ product.type }}</button>
 
       <span class="d-block name">{{ product.name }}</span>

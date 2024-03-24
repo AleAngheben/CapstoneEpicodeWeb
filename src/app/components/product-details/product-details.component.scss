@@ -1,5 +1,5 @@
 .name {
-  font-size: 100px;
+  font-size: 90px;
   font-weight: bold;
 }
 .description {
@@ -14,4 +14,33 @@
 .my-details {
   border: 3px solid black;
   padding: 3rem;
+}
+
+@media screen and (max-width: 1199px) {
+  .name {
+    font-size: 70px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .name {
+    font-size: 70px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .name {
+    font-size: 60px;
+  }
+}
+@media screen and (min-width: 576px) {
+  .name {
+    font-size: 60px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .name {
+    font-size: 45px;
+  }
+  .description {
+    font-size: 25px;
+  }
 }
