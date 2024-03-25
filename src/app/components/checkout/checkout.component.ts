@@ -31,7 +31,7 @@ export class CheckoutComponent implements OnInit {
   expiryDate: string = '';
   cvv: string = '';
   showCVV: boolean = false;
-
+  cardBusiness: string = '';
   //per country
   selectedCountry: string = '';
   countries: Country[] = [];
@@ -71,44 +71,45 @@ export class CheckoutComponent implements OnInit {
     this.selectedMethod = method;
   }
 
-  //per card NUmber
+  //per card Number
   onInput(event: any) {
-    // Rimuovi tutti i caratteri tranne i numeri
     let cardNumber = event.target.value.replace(/\D/g, '');
 
-    // Aggiungi spazio ogni 4 numeri
     cardNumber = cardNumber.replace(/(\d{4})/g, '$1 ').trim();
 
-    // Limita il numero di caratteri a 19 (4 blocchi di numeri con 3 spazi)
     this.cardNumber = cardNumber.slice(0, 19);
+    this.checkCardType(this.cardNumber);
+  }
+
+  checkCardType(cardNumber: string): void {
+    if (cardNumber.startsWith('4')) {
+      this.cardBusiness = 'visa';
+    } else if (cardNumber.startsWith('5')) {
+      this.cardBusiness = 'mastercard';
+    } else if (cardNumber.startsWith('3')) {
+      this.cardBusiness = 'amex';
+    } else {
+      this.cardBusiness = ''; // Resetta il tipo di carta se non corrisponde a nessuno dei tipi conosciuti
+    }
   }
 
   //per la data
   formatExpiryDate(event: any) {
-    // Rimuovi tutti i caratteri tranne i numeri e lo slash
     let date = event.target.value.replace(/[^\d/]/g, '');
 
-    // Formatta la data inserendo uno slash dopo i primi due numeri, se necessario
     if (date.length > 2 && date.indexOf('/') === -1) {
       date = date.slice(0, 2) + '/' + date.slice(2);
     }
 
-    // Limita la lunghezza a 5 caratteri (MM/YY)
     date = date.slice(0, 5);
 
-    // Assegna il valore al campo
     this.expiryDate = date;
   }
 
   //cvv
   formatCVV(event: any) {
-    // Rimuovi tutti i caratteri tranne i numeri
     let cvv = event.target.value.replace(/\D/g, '');
-
-    // Limita la lunghezza massima a 3 caratteri
     cvv = cvv.slice(0, 3);
-
-    // Assegna il valore al campo
     this.cvv = cvv;
   }
 

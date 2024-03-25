@@ -5,14 +5,15 @@
   display: flex;
   flex-direction: column;
 }
-
+.row {
+  height: 5rem;
+}
 .footer {
   margin-top: auto;
 }
-.my-foot {
-  @media (max-width: 450px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; // Mostra il footer quando la larghezza dello schermo è inferiore o uguale a 450px
+
+@media screen and (max-width: 440px) {
+  .write {
+    display: none;
   }
 }

@@ -6,3 +6,19 @@
 .choose-btn.active {
   border: 3px solid grey; /* Bordo rosso per il pulsante attivo */
 }
+@media screen and (max-width: 767px) {
+  .my-border-one {
+    border-bottom: 1px solid #603eab;
+  }
+}
+@media screen and (min-width: 768px) {
+  .my-border-two {
+    border-left: 1px solid #603eab;
+  }
+}
+.end-2 {
+  right: 36px;
+}
+.end-3 {
+  right: 72px;
+}
