@@ -22,3 +22,30 @@
 .hero-btn:hover > a {
   color: white;
 }
+@media screen and (max-width: 500px) {
+  .sus-title {
+    font-size: 60px;
+  }
+  .fs-1-mine {
+    font-size: 20px;
+  }
+  .fs-3-mine {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 501px) {
+  .fs-1-mine {
+    font-size: 30px;
+  }
+  .fs-3-mine {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .fs-1-mine {
+    font-size: 40px;
+  }
+  .fs-3-mine {
+    font-size: 30px;
+  }
+}
