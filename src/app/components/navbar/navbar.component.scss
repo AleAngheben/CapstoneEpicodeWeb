@@ -12,6 +12,10 @@
   border-radius: 10%;
 }
 
+img {
+  filter: brightness(100) grayscale(0);
+}
+
 nav {
   height: 5rem;
 }
