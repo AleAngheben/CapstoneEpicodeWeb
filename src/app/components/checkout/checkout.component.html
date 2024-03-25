@@ -1,6 +1,8 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-5 offset-1 px-5 d-flex flex-column">
+    <div
+      class="col-md-6 col-lg-5 offset-lg-1 px-4 px-md-5 d-flex flex-column mb-5 mb-md-0 border-bottom pb-4 pb-md-0"
+    >
       <div class="mb-4">
         <a
           [routerLink]="['/cart']"
@@ -24,21 +26,22 @@
           <h5>{{ item.products.price }} €</h5>
         </div>
       </div>
-      <div class="mt-auto">
+      <div class="d-none d-md-block mt-md-auto">
         <p class="fs-6">
           This payment screen is inspired by Stripe but it's not functional; no
           payment will be charged.
         </p>
       </div>
     </div>
-    <div class="col-5 border-start ps-4">
+    <div class="col-md-6 col-lg-5 border-md-start ps-4">
       <div>
         <h5>Contact information</h5>
         <div
           *ngIf="user"
           class="bg-body-tertiary border border-2 px-3 py-2 rounded-3"
         >
-          <span>Email </span><span class="ms-5 ps-5"> {{ user.email }}</span>
+          <span>Email </span
+          ><span class="ms-lg-3 ms-xl-5 ps-md-5"> {{ user.email }}</span>
         </div>
       </div>
       <div class="w-100 mt-4">
@@ -168,6 +171,12 @@
       >
         Pay
       </button>
+      <div class="d-md-none mt-4">
+        <p class="fs-6">
+          This payment screen is inspired by Stripe but it's not functional, no
+          payment will be charged.
+        </p>
+      </div>
     </div>
   </div>
 </div>
