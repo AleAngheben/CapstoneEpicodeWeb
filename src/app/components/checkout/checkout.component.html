@@ -1,21 +1,34 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-5 offset-1 px-5">
-      <h1 class="mb-5">Dati del carrello</h1>
+    <div class="col-5 offset-1 px-5 d-flex flex-column">
+      <div class="mb-4">
+        <a
+          [routerLink]="['/cart']"
+          class="text-decoration-none text-secondary-emphasis"
+        >
+          <i class="bi bi-arrow-left"></i> <span> Back to cart</span></a
+        >
+      </div>
       <h3 class="mb-5">
-        <span class="d-block">Prezzo del carrello :</span>
-        {{ cart?.cartPrice }} €
+        <span class="d-block fw-lighter fs-4 mb-1">Pay</span>
+        <span class="fs-1">{{ cart?.cartPrice }} €</span>
       </h3>
       <div
         *ngFor="let item of productsOnCart"
-        class="d-flex justify-content-between"
+        class="d-flex justify-content-between mb-2"
       >
         <div>
-          <h4>{{ item.products.name }} &lpar;{{ item.quantity }}&rpar;</h4>
+          <h5>{{ item.products.name }} &lpar;{{ item.quantity }}&rpar;</h5>
         </div>
         <div>
-          <h4>{{ item.products.price }} €</h4>
+          <h5>{{ item.products.price }} €</h5>
         </div>
+      </div>
+      <div class="mt-auto">
+        <p class="fs-6">
+          This payment screen is inspired by Stripe but it's not functional; no
+          payment will be charged.
+        </p>
       </div>
     </div>
     <div class="col-5 border-start ps-4">
