@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-5 offset-1 bg-body-tertiary">
+    <div class="col-5 offset-1 px-5">
       <h1 class="mb-5">Dati del carrello</h1>
       <h3 class="mb-5">
         <span class="d-block">Prezzo del carrello :</span>
@@ -18,60 +18,143 @@
         </div>
       </div>
     </div>
-    <div class="col-5 bg-info">
+    <div class="col-5 border-start ps-4">
       <div>
-        <h4 class="text-center">I tuoi dati</h4>
-        <div *ngIf="user">
-          <span>Email </span><span> {{ user.email }}</span>
+        <h5>Contact information</h5>
+        <div
+          *ngIf="user"
+          class="bg-body-tertiary border border-2 px-3 py-2 rounded-3"
+        >
+          <span>Email </span><span class="ms-5 ps-5"> {{ user.email }}</span>
         </div>
       </div>
-      <div>
-        <h4>Payment method</h4>
-        <button>Card</button>
-        <button>Cash on delivery</button>
+      <div class="w-100 mt-4">
+        <h5>Payment method</h5>
+        <div class="d-flex justify-content-between gap-2 align-items-center">
+          <div class="w-50">
+            <button
+              class="btn choose-btn text-start w-100"
+              [class.active]="selectedMethod === 'card'"
+              (click)="selectMethod('card')"
+            >
+              <i class="bi bi-credit-card-2-back"></i><br />
+              <span>Card</span>
+            </button>
+          </div>
+          <div class="w-50">
+            <button
+              class="btn choose-btn text-start w-100"
+              [class.active]="selectedMethod === 'cash'"
+              (click)="selectMethod('cash')"
+            >
+              <i class="bi bi-truck"></i><br />
+              <span>Cash on delivery</span>
+            </button>
+          </div>
+        </div>
       </div>
-      <div>
-        <h5>Card information</h5>
-        <form>
-          <label for="card_number">Numero della carta:</label><br />
+      <div class="mt-4" *ngIf="selectedMethod === 'card'">
+        <h6>Card information</h6>
+
+        <input
+          type="text"
+          id="cardNumber"
+          name="cardNumber"
+          placeholder="1234 1234 1234 1234"
+          [(ngModel)]="cardNumber"
+          (input)="onInput($event)"
+          pattern="[0-9]*"
+          maxlength="19"
+          class="w-100 p-1 ps-2 form-control rounded-bottom-0"
+        />
+        <div class="d-flex w-100">
           <input
             type="text"
-            id="card_number"
-            name="card_number"
-            class="form-control"
-            pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}"
-            placeholder="Inserisci il numero della tua carta di credito"
-            required
-          /><br />
+            id="expiryDate"
+            name="expiryDate"
+            placeholder="MM / YY"
+            [(ngModel)]="expiryDate"
+            (input)="formatExpiryDate($event)"
+            pattern="[0-9]*"
+            maxlength="5"
+            class="w-50 p-1 ps-2 border-top-0 rounded-top-0 form-control rounded-end-0"
+          />
 
-          <label for="expiration_date">Data di scadenza (MM/AA):</label><br />
-          <input
-            type="text"
-            id="expiration_date"
-            name="expiration_date"
-            placeholder="MM/AA"
-            pattern="\d{2}/\d{2}"
-            class="form-control"
-            title="Inserisci la data di scadenza nel formato MM/AA"
-            required
-          /><br />
+          <div class="w-50 position-relative">
+            <input
+              type="{{ showCVV ? 'text' : 'password' }}"
+              id="cvv"
+              name="cvv"
+              placeholder="CVV"
+              [(ngModel)]="cvv"
+              (input)="formatCVV($event)"
+              pattern="[0-9]*"
+              maxlength="3"
+              class="w-100 p-1 ps-2 border-top-0 border-start-0 rounded-top-0 form-control rounded-start-0"
+            />
 
-          <label for="cvv">CVV:</label><br />
-          <input
-            type="text"
-            id="cvv"
-            name="cvv"
-            class="form-control"
-            placeholder="Inserisci il codice di sicurezza CVV"
-            maxlength="3"
-            pattern="\d{3}"
-            title="Inserisci un codice CVV valido"
-            required
-          /><br />
-
-          <input type="submit" value="Conferma pagamento" />
-        </form>
+            <span
+              class="position-absolute end-0 top-0 pe-2 fs-5"
+              *ngIf="showCVV"
+            >
+              <i class="bi bi-eye" (click)="toggleCVVVisibility()"></i>
+            </span>
+            <span
+              class="position-absolute end-0 top-0 pe-2 fs-5"
+              *ngIf="!showCVV"
+            >
+              <i class="bi bi-eye-slash" (click)="toggleCVVVisibility()"></i>
+            </span>
+          </div>
+        </div>
       </div>
+      <div class="mt-4" *ngIf="selectedMethod === 'card'">
+        <h6>Name on card</h6>
+        <input
+          type="text"
+          class="form-control w-100"
+          placeholder="Ex: Mario Rossi"
+        />
+      </div>
+      <div class="mt-4">
+        <h6>Address info</h6>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="City / Street / Number"
+        />
+      </div>
+      <div class="mt-4">
+        <h6>Country</h6>
+        <select
+          id="countrySelect"
+          [(ngModel)]="selectedCountry"
+          class="form-control"
+        >
+          <option value="" disabled selected>Choose your country</option>
+          <option *ngFor="let country of countries" [value]="country.name">
+            {{ country.name }}
+          </option>
+        </select>
+        <div class="border border-1 border-light-subtle mt-3 p-3 rounded-3">
+          <input
+            type="checkbox"
+            class="form-check-input mb-2"
+            id="flexCheckDefault"
+            [(ngModel)]="isChecked"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Click the checkbox to enable the button, it doesn't serve any other
+            purpose :&rpar;
+          </label>
+        </div>
+      </div>
+      <button
+        class="btn btn-primary w-100 text-center mt-4"
+        [disabled]="!isChecked"
+      >
+        Pay
+      </button>
     </div>
   </div>
 </div>

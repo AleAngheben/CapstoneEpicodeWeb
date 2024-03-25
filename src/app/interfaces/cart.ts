@@ -5,3 +5,7 @@ export interface Cart {
   items: Item[];
   cartPrice: number;
 }
+
+export interface Country {
+  name: string;
+}
