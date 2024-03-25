@@ -1,56 +1,54 @@
-<div class="container mt-5">
-  <div class="border-mine d-flex justify-content-center">
-    <div class="row p-4 border-mine2 bg-white m-0 gy-5 gy-lg-0">
-      <div
-        class="col-6 offset-3 col-lg-3 offset-lg-0 position-relative"
-        *ngIf="user && user.avatarUrl"
-        id="profile-img-container"
-      >
-        <div class="d-flex flex-column align-items-center">
-          <div
-            class="w-100 rounded-5 object-fit-cover d-flex justify-content-center"
-          >
-            <i
-              class="bi bi-pencil-square position-absolute fs-5 end-0 pointer"
-              (click)="onClickUploadButton()"
-            ></i>
+<div class="container mt-0 mt-md-5">
+  <div class="row p-4 border-mine2 bg-white m-0 gy-5 gy-lg-0">
+    <div
+      class="col-6 offset-3 col-lg-3 offset-lg-0 position-relative first p-md-3 d-flex align-items-center"
+      *ngIf="user && user.avatarUrl"
+      id="profile-img-container"
+    >
+      <div class="d-flex flex-column align-items-center">
+        <div
+          class="w-100 rounded-5 object-fit-cover d-flex justify-content-center"
+        >
+          <i
+            class="bi bi-pencil-square position-absolute fs-5 end-0 pointer"
+            (click)="onClickUploadButton()"
+          ></i>
+          <img
+            *ngIf="imageSwitch; else loadingTemplate"
+            src="{{ user!.avatarUrl }}"
+            alt=""
+            class="w-100 rounded-50"
+            id="profile-img"
+          />
+          <ng-template #loadingTemplate class="w-100">
             <img
-              *ngIf="imageSwitch; else loadingTemplate"
-              src="{{ user!.avatarUrl }}"
+              src="../../../assets/imgs/wait.png"
               alt=""
               class="w-100 rounded-50"
               id="profile-img"
             />
-            <ng-template #loadingTemplate class="w-100">
-              <img
-                src="../../../assets/imgs/wait.png"
-                alt=""
-                class="w-100 rounded-50"
-                id="profile-img"
-              />
-            </ng-template>
-          </div>
+          </ng-template>
         </div>
-        <input
-          type="file"
-          id="avatarInput"
-          style="display: none"
-          (change)="onFileSelected($event)"
-        />
       </div>
-      <div class="col-12 col-lg-8 offset-lg-1 position-relative">
-        <i
-          class="bi bi-pencil-square position-absolute fs-5 end-0"
-          (click)="openDialog()"
-        ></i>
-        <h1>{{ user?.name }} {{ user?.surname }}</h1>
-        <h4>{{ user?.username }}</h4>
-        <p class="pt-5 fs-4">EMAIL: {{ user?.email }}</p>
-        <p class="fs-4">
-          PRODUCTS FOR SALE:
-          <span class="fw-bolder">{{ products?.length }}</span>
-        </p>
-      </div>
+      <input
+        type="file"
+        id="avatarInput"
+        style="display: none"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+    <div class="col-12 col-lg-8 offset-lg-1 position-relative p-md-5 second">
+      <i
+        class="bi bi-pencil-square position-absolute fs-5 end-0 pointer"
+        (click)="openDialog()"
+      ></i>
+      <h1>{{ user?.name }} {{ user?.surname }}</h1>
+      <h4>{{ user?.username }}</h4>
+      <p class="pt-5 fs-4">EMAIL: {{ user?.email }}</p>
+      <p class="fs-4">
+        PRODUCTS FOR SALE:
+        <span class="fw-bolder">{{ products?.length }}</span>
+      </p>
     </div>
   </div>
 
@@ -58,6 +56,7 @@
     class="row justify-content-center gap-5 gap-lg-2 mt-5"
     *ngIf="products && products.length > 0; else noProdTemplate"
   >
+    <h1 class="text-center mb-5">My products on sale</h1>
     <div
       class="card product-card col-12 col-md-6 col-lg-4 col-xl-3 p-0 position-relative p-card"
       *ngFor="let product of products"

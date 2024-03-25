@@ -102,3 +102,14 @@
 .p-card:hover .delete-btn {
   display: block;
 }
+
+@media screen and (min-width: 992px) {
+  .second {
+    border-left: 2px solid #603eab;
+  }
+}
+@media screen and (max-width: 991px) {
+  .first {
+    border-bottom: 2px solid #603eab;
+  }
+}

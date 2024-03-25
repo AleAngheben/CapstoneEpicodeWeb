@@ -1,71 +1,84 @@
 <div class="dialog-content">
-  <h2 class="text-center">Product details</h2>
-  <div class="d-md-flex gap-5 m-5">
-    <form (ngSubmit)="createProduct()">
-      <div class="form-group">
-        <label for="name">Product name:</label>
-        <input
-          [(ngModel)]="productData.name"
-          type="text"
-          class="form-control"
-          id="name"
-          name="name"
-        />
-      </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea
-          [(ngModel)]="productData.description"
-          class="form-control"
-          id="description"
-          name="description"
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="price">Price:</label>
-        <input
-          [(ngModel)]="productData.price"
-          type="number"
-          class="form-control"
-          id="price"
-          name="price"
-        />
-      </div>
-      <div class="form-group">
-        <label for="type">Category:</label>
-        <select
-          [(ngModel)]="productData.type"
-          class="form-select"
-          aria-label="Default select example"
-          name="type"
-        >
-          <option value="" disabled selected hidden>
-            Open this select menu
-          </option>
-          <option value="VIDEOGAMES">VIDEOGAMES</option>
-          <option value="BOOKS">BOOKS</option>
-          <option value="ELECTRONICS">ELECTRONICS</option>
-          <option value="CLOTHING">CLOTHING</option>
-          <option value="SPORT">SPORT</option>
-          <option value="TOYS">TOYS</option>
-          <option value="MUSIC">MUSIC</option>
-          <option value="FURNITURE">FURNITURE</option>
-          <option value="PET_SUPPLIES">PETS</option>
-          <option value="OTHER">OTHER</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="productImg">Image:</label>
-        <input
-          #productImg
-          type="file"
-          class="form-control"
-          id="productImg"
-          name="productImg"
-          (change)="onFileSelected($event)"
-        />
-      </div>
-      <div *ngIf="selectedImageURL" class="d-md-none mb-3">
+  <div>
+    <h2 class="text-center">Product details</h2>
+    <div class="d-md-flex gap-5 m-5">
+      <form (ngSubmit)="createProduct()">
+        <div class="form-group">
+          <label for="name">Product name:</label>
+          <input
+            [(ngModel)]="productData.name"
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea
+            [(ngModel)]="productData.description"
+            class="form-control"
+            id="description"
+            name="description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input
+            [(ngModel)]="productData.price"
+            type="number"
+            class="form-control"
+            id="price"
+            name="price"
+          />
+        </div>
+        <div class="form-group">
+          <label for="type">Category:</label>
+          <select
+            [(ngModel)]="productData.type"
+            class="form-select"
+            aria-label="Default select example"
+            name="type"
+          >
+            <option value="" disabled selected hidden>
+              Open this select menu
+            </option>
+            <option value="VIDEOGAMES">VIDEOGAMES</option>
+            <option value="BOOKS">BOOKS</option>
+            <option value="ELECTRONICS">ELECTRONICS</option>
+            <option value="CLOTHING">CLOTHING</option>
+            <option value="SPORT">SPORT</option>
+            <option value="TOYS">TOYS</option>
+            <option value="MUSIC">MUSIC</option>
+            <option value="FURNITURE">FURNITURE</option>
+            <option value="PET_SUPPLIES">PETS</option>
+            <option value="OTHER">OTHER</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="productImg">Image:</label>
+          <input
+            #productImg
+            type="file"
+            class="form-control"
+            id="productImg"
+            name="productImg"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+        <div *ngIf="selectedImageURL" class="d-md-none mb-3">
+          <label class="d-block">Image preview </label>
+          <img
+            [src]="selectedImageURL"
+            alt="Anteprima"
+            style="max-width: 200px"
+          />
+        </div>
+        <button type="submit" class="hero-btn btn rounded-5 p-2 px-4">
+          Post product
+        </button>
+      </form>
+      <div *ngIf="selectedImageURL" class="d-none d-md-block">
         <label class="d-block">Image preview </label>
         <img
           [src]="selectedImageURL"
@@ -73,13 +86,6 @@
           style="max-width: 200px"
         />
       </div>
-      <button type="submit" class="hero-btn btn rounded-5 p-2 px-4">
-        Post product
-      </button>
-    </form>
-    <div *ngIf="selectedImageURL" class="d-none d-md-block">
-      <label class="d-block">Image preview </label>
-      <img [src]="selectedImageURL" alt="Anteprima" style="max-width: 200px" />
     </div>
   </div>
 </div>

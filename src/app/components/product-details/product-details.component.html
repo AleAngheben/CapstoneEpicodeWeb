@@ -1,15 +1,25 @@
 <div class="container mt-5">
-  <div class="row pt-5 my-details gap-5 gap-lg-0" *ngIf="product">
-    <div class="col-8 offset-2 col-lg-5 offset-lg-0">
+  <div class="row my-details gap-5 gap-lg-0" *ngIf="product">
+    <div class="col-8 offset-2 col-lg-5 offset-lg-0 first p-5">
       <img src="{{ product.productImg }}" alt="" class="w-100" />
     </div>
-    <div class="col-12 col-lg-7">
-      <button class="btn rounded-5 text-white tag">{{ product.type }}</button>
+    <div
+      class="col-12 col-lg-7 second px-5 d-flex flex-column justify-content-center"
+    >
+      <div>
+        <button class="btn rounded-5 text-white tag">{{ product.type }}</button>
+      </div>
 
-      <span class="d-block name">{{ product.name }}</span>
-      <p class="description">{{ product.description }}</p>
-      <p class="mt-5 fs-3 mb-0">Price:</p>
-      <p class="price">{{ product.price }} €</p>
+      <div>
+        <span class="d-block name">{{ product.name }}</span>
+      </div>
+      <div>
+        <p class="description">{{ product.description }}</p>
+      </div>
+      <div>
+        <p class="mt-5 fs-3 mb-0">Price:</p>
+        <p class="price">{{ product.price }} €</p>
+      </div>
     </div>
   </div>
 </div>

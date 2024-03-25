@@ -4,7 +4,11 @@ import { ProductService } from 'src/app/services/product.service';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { NewProduct, Product } from 'src/app/interfaces/new-product';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 @Component({
   selector: 'app-backoffice',
@@ -20,7 +24,9 @@ export class BackofficeComponent implements OnInit {
     private prodSrv: ProductService,
     private authSrv: AuthService,
     public dialog: MatDialog,
-    private snackBar: SnackBarComponent
+    private snackBar: SnackBarComponent,
+    public dialogRef: MatDialogRef<BackofficeComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   productData: NewProduct = {

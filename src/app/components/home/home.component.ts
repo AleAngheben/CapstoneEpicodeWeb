@@ -99,6 +99,7 @@ export class HomeComponent implements OnInit {
   openBackoffice() {
     const dialogRef = this.dialog.open(BackofficeComponent, {
       panelClass: 'custom-backoffice',
+      position: { top: '5rem' },
     });
 
     dialogRef.afterClosed().subscribe(() => {

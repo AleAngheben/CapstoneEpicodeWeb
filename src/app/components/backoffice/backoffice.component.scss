@@ -1,5 +1,15 @@
 .dialog-content {
-  z-index: 999;
+  z-index: 9;
+  overflow-y: auto; /* Abilita lo scrolling verticale quando il contenuto supera le dimensioni del dialogo */
+  max-height: calc(100vh - 5rem);
+
+  position: sticky;
+  top: 5rem;
+}
+:host {
+  z-index: 9;
+  position: sticky;
+  top: 5rem;
 }
 input,
 textarea,

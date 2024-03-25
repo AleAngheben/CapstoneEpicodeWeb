@@ -12,7 +12,6 @@
   background-color: #603eab;
 }
 .my-details {
-  border: 3px solid black;
   padding: 3rem;
 }
 
@@ -24,6 +23,14 @@
 @media screen and (min-width: 992px) {
   .name {
     font-size: 70px;
+  }
+  .second {
+    border-left: 2px solid #603eab;
+  }
+}
+@media screen and (max-width: 991px) {
+  .first {
+    border-bottom: 2px solid #603eab;
   }
 }
 @media screen and (max-width: 767px) {
@@ -42,6 +49,18 @@
   }
   .description {
     font-size: 25px;
+  }
+}
+@media screen and (max-width: 477px) {
+  .name {
+    font-size: 25px;
+    margin-top: 1rem;
+  }
+  .description {
+    font-size: 18px;
+  }
+  .tag {
+    font-size: 10px;
   }
 }
 .my-btn {
