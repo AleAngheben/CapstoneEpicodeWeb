@@ -31,4 +31,8 @@ export class CartService {
   itemMinusOnCart(productId: string): Observable<any> {
     return this.http.delete(`${this.apiURL}/items/minus/${productId}`);
   }
+
+  clearCart(cartId: string): Observable<Cart> {
+    return this.http.post<Cart>(`${this.apiURL}/carts/empty/${cartId}`, cartId);
+  }
 }

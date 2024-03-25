@@ -58,7 +58,11 @@ export class CheckoutComponent implements OnInit {
       this.productsOnCart = products.items;
     });
   }
-
+  clearCart(cartId: string): void {
+    this.cartSrv.clearCart(cartId).subscribe(() => {
+      this.loadMyCart();
+    });
+  }
   //ricava user loggato
   getUserProfile(): void {
     this.authSrv.getMyProfile().subscribe((user: User) => {

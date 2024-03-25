@@ -219,6 +219,8 @@
       <button
         class="btn btn-primary w-100 text-center mt-4"
         [disabled]="!isChecked"
+        [routerLink]="['/successpayment']"
+        (click)="clearCart(cart!.id)"
       >
         Pay
       </button>
