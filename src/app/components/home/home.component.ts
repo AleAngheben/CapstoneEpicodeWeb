@@ -47,6 +47,10 @@ export class HomeComponent implements OnInit {
     'PET_SUPPLIES',
     'OTHER',
   ];
+
+  //PER PAGE
+  currentPage: number = 0;
+  pageSize: number = 16;
   constructor(
     private HomeService: HomeService,
     private activatedRoute: ActivatedRoute,
@@ -66,15 +70,32 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
-    this.getProducts();
+    this.getProducts(this.currentPage, this.pageSize);
     console.log(this.user);
   }
 
-  getProducts() {
-    this.HomeService.getProducts().subscribe((response: any) => {
+  getProducts(page: number, size: number) {
+    this.HomeService.getProducts(page, size).subscribe((response: any) => {
       this.products = response.content;
+      this.currentPage = response.number;
+      this.totalPages = response.totalPages;
+      this.totalElements = response.totalElements;
     });
   }
+
+  //page
+  previousPage() {
+    if (this.currentPage > 0) {
+      this.getProducts(this.currentPage - 1, this.pageSize);
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages - 1) {
+      this.getProducts(this.currentPage + 1, this.pageSize);
+    }
+  }
+
   addToCart(productId: string) {
     this.cartSrv.addItemToCart(productId).subscribe((response) => {
       console.log('Prodotto aggiunto al carrello', response);
@@ -104,7 +125,7 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.getUserProfile();
-      this.getProducts();
+      this.getProducts(this.currentPage, this.pageSize);
     });
   }
   deleteProduct(id: string) {
@@ -112,7 +133,7 @@ export class HomeComponent implements OnInit {
       'Sei sicuro di voler eliminare questo prodotto?'
     );
     this.prodSrv.deleteProduct(id).subscribe(() => {
-      this.getProducts();
+      this.getProducts(this.currentPage, this.pageSize);
       this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
     });
   }

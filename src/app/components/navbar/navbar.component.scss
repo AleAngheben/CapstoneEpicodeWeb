@@ -18,6 +18,9 @@ img {
 
 nav {
   height: 5rem;
+  z-index: 1001;
+  position: sticky;
+  top: 0;
 }
 
 @media screen and (max-width: 991px) {

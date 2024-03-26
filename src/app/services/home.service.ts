@@ -11,7 +11,12 @@ export class HomeService {
   private apiURL = environment.apiURL;
   constructor(private http: HttpClient) {}
 
-  getProducts() {
-    return this.http.get<Product[]>(`${this.apiURL}/products`);
+  // getProducts() {
+  //   return this.http.get<Product[]>(`${this.apiURL}/products`);
+  // }
+  getProducts(page: number, size: number) {
+    return this.http.get<Product[]>(
+      `${this.apiURL}/products?page=${page}&size=${size}`
+    );
   }
 }
