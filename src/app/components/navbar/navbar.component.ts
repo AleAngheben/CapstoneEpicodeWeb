@@ -34,15 +34,5 @@ export class NavbarComponent implements OnInit {
   }
   openBackoffice() {
     const dialogRef = this.dialog.open(BackofficeComponent);
-
-    // dialogRef.afterClosed().subscribe(() => {
-    //   this.getUserProfile();
-    //   this.getProducts();
-    // });
   }
-  // getProducts() {
-  //   this.HomeService.getProducts().subscribe((response: any) => {
-  //     this.products = response.content;
-  //   });
-  // }
 }

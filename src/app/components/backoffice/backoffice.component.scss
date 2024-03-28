@@ -23,19 +23,8 @@ img {
   object-fit: cover;
 }
 .hero-btn {
-  background-color: white;
-  border-color: #603eab;
-  color: #603eab;
-  font-weight: bold;
-}
-.hero-btn:hover {
   background-color: #603eab;
-  border-color: transparent;
+
   color: white;
   font-weight: bold;
 }
-// :host {
-//   max-height: calc(100vh - 10rem);
-//   overflow-y: scroll;
-//   margin-top: 5rem;
-// }

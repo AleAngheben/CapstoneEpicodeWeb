@@ -149,18 +149,18 @@
 
           <button
             (click)="addToCart(product.id)"
-            class="btn bg-mine text-white w-100"
+            class="btn bg-mine text-white w-100 rounded-5"
             id="buyable"
             [disabled]="user.id === product.seller.id"
           >
-            Add to Cart
+            Add to Cart <i class="bi bi-bag ms-2"></i>
           </button>
         </div>
       </div>
     </ng-container>
     <div
       class="d-flex justify-content-center align-items-center my-3"
-      *ngIf="totalPages > 1"
+      *ngIf="totalPages > 1 && type === ''"
     >
       <button
         class="btn hero-btn fw-bold"
@@ -179,11 +179,14 @@
       </button>
     </div>
   </div>
-  <button class="d-lg-none btn add-btn rounded-5" (click)="openBackoffice()">
+  <button
+    class="d-lg-none btn add-btn rounded-5 d-flex align-items-center justify-content-center"
+    (click)="openBackoffice()"
+  >
     <i class="bi bi-plus-circle fs-3"></i>
   </button>
   <button
-    class="btn back-to-top-btn rounded-5 d-flex align-items-baseline justify-content-center"
+    class="btn back-to-top-btn rounded-5 d-flex align-items-center justify-content-center"
     (click)="scrollToTop()"
     *ngIf="showBackToTopBtn"
   >
