@@ -1,6 +1,6 @@
 .container {
   background-color: #d0d1ff;
-  // padding: 5rem;
+  padding: 3rem;
   border-radius: 30px;
 }
 .mt-6 {
@@ -90,6 +90,8 @@
   border-radius: 30px;
   width: calc(100% - 16px);
   height: calc(100% - 16px);
+  background-color: white;
+  margin: 3rem;
   //background-color: #d0d1ff;
 }
 .delete-btn {
