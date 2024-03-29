@@ -39,7 +39,6 @@ export class CartComponent implements OnInit {
   getUserProfile(): void {
     this.authSrv.getMyProfile().subscribe((user: User) => {
       this.user = user;
-      // this.getMyProductsOnSell();
     });
   }
 

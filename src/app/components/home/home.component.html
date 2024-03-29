@@ -149,11 +149,12 @@
 
           <button
             (click)="addToCart(product.id)"
-            class="btn bg-mine text-white w-100 rounded-5"
+            class="btn bg-mine text-white w-100 rounded-5 d-flex align-items-center justify-content-center"
             id="buyable"
             [disabled]="user.id === product.seller.id"
           >
-            Add to Cart <i class="bi bi-bag ms-2"></i>
+            Add to Cart
+            <i class="bi bi-bag ms-3"></i>
           </button>
         </div>
       </div>
