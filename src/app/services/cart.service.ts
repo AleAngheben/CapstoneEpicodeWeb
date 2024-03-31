@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductOnSell } from '../interfaces/new-product';
 import { Cart } from '../interfaces/cart';
 @Injectable({
@@ -9,7 +9,11 @@ import { Cart } from '../interfaces/cart';
 })
 export class CartService {
   private apiURL = environment.apiURL;
-
+  private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject<Cart>({
+    id: '',
+    items: [],
+    cartPrice: 0,
+  });
   constructor(private http: HttpClient) {}
 
   addItemToCart(productId: string): Observable<any> {
@@ -35,4 +39,12 @@ export class CartService {
   clearCart(cartId: string): Observable<Cart> {
     return this.http.post<Cart>(`${this.apiURL}/carts/empty/${cartId}`, cartId);
   }
+
+  //badge
+  // updateCart(cart: Cart): void {
+  //   this.cartSubject.next(cart);
+  // }
+  // getCartObservable(): Observable<Cart> {
+  //   return this.cartSubject.asObservable();
+  // }
 }

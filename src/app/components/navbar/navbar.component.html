@@ -56,9 +56,12 @@
           </ul>
         </div>
         <div>
-          <a [routerLink]="['/cart']"
-            ><i class="bi bi-cart fs-3" *ngIf="user"></i
-          ></a>
+          <a [routerLink]="['/cart']">
+            <i class="bi bi-cart fs-3" *ngIf="user"></i>
+            <!-- <mat-icon matBadge="{{ prodOnCart }}" matBadgeColor="accent"
+              ><i class="bi bi-cart fs-3" *ngIf="user"></i
+            ></mat-icon> -->
+          </a>
         </div>
       </div>
       <div class="d-lg-none">

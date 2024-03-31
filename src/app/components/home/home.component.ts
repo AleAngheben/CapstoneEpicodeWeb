@@ -99,6 +99,7 @@ export class HomeComponent implements OnInit {
   addToCart(productId: string) {
     this.cartSrv.addItemToCart(productId).subscribe((response) => {
       console.log('Prodotto aggiunto al carrello', response);
+      // this.cartSrv.updateCart(response);
       this.snackBar.successSnackbar('Prodotto aggiunto al carrello');
     });
   }

@@ -62,3 +62,17 @@ nav {
   font-size: 25px;
   margin-top: 3px;
 }
+
+//cart badge
+.mat-badge-content {
+  min-width: 20px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 18px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 2px;
+  font-weight: bold;
+}

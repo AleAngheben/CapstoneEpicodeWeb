@@ -30,6 +30,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ErrorInterceptor } from './auth/error.interceptor';
 
+//badge
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+
 import { SuccesscheckoutComponent } from './components/successcheckout/successcheckout.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 const routes: Route[] = [
@@ -118,6 +122,8 @@ const routes: Route[] = [
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
+    MatBadgeModule,
   ],
   providers: [
     ProfileComponent,
