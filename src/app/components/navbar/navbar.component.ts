@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
   getUser() {
     this.authSrv.user$.subscribe((user) => {
       this.user = user;
-      console.log(this.user);
+
       // this.getProds();
     });
   }

@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getUserProfile();
     this.getProducts(this.currentPage, this.pageSize);
-    console.log(this.user);
   }
 
   getProducts(page: number, size: number) {
@@ -98,7 +97,6 @@ export class HomeComponent implements OnInit {
 
   addToCart(productId: string) {
     this.cartSrv.addItemToCart(productId).subscribe((response) => {
-      console.log('Prodotto aggiunto al carrello', response);
       // this.cartSrv.updateCart(response);
       this.snackBar.successSnackbar('Prodotto aggiunto al carrello');
     });
@@ -107,7 +105,6 @@ export class HomeComponent implements OnInit {
     this.authSrv.getMyProfile().subscribe((user: User) => {
       this.user = user;
       this.isAdminRole();
-      console.log(this.user);
     });
   }
 

@@ -56,7 +56,6 @@ export class BackofficeComponent implements OnInit {
       const userId = user.id;
       const productDataMy = { ...this.productData, sellerId: userId };
       this.prodSrv.addProduct(productDataMy).subscribe((response) => {
-        console.log('Prodotto creato con successo');
         if (response.id) {
           this.uploadAvatar(this.file, response.id);
 
