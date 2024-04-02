@@ -105,10 +105,14 @@ export class ProfileComponent implements OnInit {
     const confirmDelete = confirm(
       'Sei sicuro di voler eliminare questo prodotto?'
     );
-    this.productService.deleteProduct(id).subscribe(() => {
-      this.loadProductsOnSale();
-      this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
-    });
+    if (confirmDelete) {
+      this.productService.deleteProduct(id).subscribe(() => {
+        this.loadProductsOnSale();
+        this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
+      });
+    } else {
+      this.snackBar.yellowSnackbar('Prodotto non eliminato');
+    }
   }
   openBackoffice() {
     const dialogRef = this.dialog.open(BackofficeComponent);

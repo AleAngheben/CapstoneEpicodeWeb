@@ -130,10 +130,14 @@ export class HomeComponent implements OnInit {
     const confirmDelete = confirm(
       'Sei sicuro di voler eliminare questo prodotto?'
     );
-    this.prodSrv.deleteProduct(id).subscribe(() => {
-      this.getProducts(this.currentPage, this.pageSize);
-      this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
-    });
+    if (confirmDelete) {
+      this.prodSrv.deleteProduct(id).subscribe(() => {
+        this.getProducts(this.currentPage, this.pageSize);
+        this.snackBar.yellowSnackbar('Prodotto eliminato con successo');
+      });
+    } else {
+      this.snackBar.yellowSnackbar('Prodotto non eliminato');
+    }
   }
   isAdminRole() {
     if (this.user && this.user.role && this.user.role === 'ADMIN') {
